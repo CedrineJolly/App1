@@ -1,0 +1,66 @@
+@startuml
+class Contrat 
+{
+    + Id : int
+    + Type : string
+    + TpsLun : int
+    + TpsMar : int
+    + TpsMer : int
+    + TpsJeu : int
+    + TpsVen : int
+    + TotHSemaine : int
+    + SalaireNet : int
+    + ResteAPayer : int
+
+    + TotalSemaine() : int
+    + CalculSalaire() : int
+    + CalculReste() : int
+
+}
+
+class Enfant
+{
+    + Id : int
+    + Nom : string
+    + Prenom : string
+    + Contrat : Contrat
+}
+
+class Planning 
+{
+    + Id : int
+    + Mois : string
+    + Annee : int
+    + Enfant : Enfant
+    + TotHMois : int
+    + NbJAccueil() :
+    + IndemEntretien : int
+    + IndemRepas : int
+    + NbJActivite : int
+    + SalaireNetPaye : int
+    + MontantNetPaye : int
+
+
+    + CalculNbJAcc() : int
+    + CalculEntretien() : int
+    + CalculRepas() : int
+    + CalculJAct() : int
+    + CalculSalireNet() : int
+    + CalculMontantPaye() : int
+
+}
+
+class Impot
+{
+    + Id : int
+    + Annee : int
+    + Enfant : Enfant
+}
+
+Contrat -- Enfant
+Enfant "1" -- "1..*" Planning
+Enfant "1" -- "1..*" Impot
+Planning "1..12" -- "1" Impot
+
+
+@enduml

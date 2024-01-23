@@ -13,3 +13,14 @@ window.addEventListener('DOMContentLoaded', () => {
         replaceText(`${type}-version`, process.versions[type])
     }
 })
+
+const testManager = require("./models/testmanager");
+const {contextBridge} = require("electron");
+const getNames = () => 
+{
+    return testManager.getNames();
+}
+
+contextBridge.exposeInMainWorld("bridge", {
+    getNames : getNames
+})

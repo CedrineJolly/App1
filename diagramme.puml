@@ -1,8 +1,8 @@
 @startuml
 class Contrat 
 {
-    + Id : int
-    + Type : string
+    + IdContrat : int
+    + Type : int
     + TpsLun : int
     + TpsMar : int
     + TpsMer : int
@@ -20,27 +20,25 @@ class Contrat
 
 class Enfant
 {
-    + Id : int
+    + IdEnfant : int
     + Nom : string
     + Prenom : string
-    + Contrat : Contrat
+    + IdContrat : int
 }
+Contrat "1,1"--|{"1,1" Enfant : IdContrat
 
-class Planning 
+class Mois 
 {
-    + Id : int
-    + Mois : string
-    + Annee : int
-    + Enfant : Enfant
+    + IdMois : int
+    + Date : date
+
     + TotHMois : int
-    + NbJAccueil() :
+    + NbJAccueil : int
     + IndemEntretien : int
     + IndemRepas : int
     + NbJActivite : int
     + SalaireNetPaye : int
     + MontantNetPaye : int
-
-
     + CalculNbJAcc() : int
     + CalculEntretien() : int
     + CalculRepas() : int
@@ -50,17 +48,40 @@ class Planning
 
 }
 
-class Impot
+class Garde
 {
-    + Id : int
-    + Annee : int
-    + Enfant : Enfant
+    + IdGarde : int
+    + Date : date 
+    + NbHeures : int
+    + IdEnfant : int
 }
 
-Contrat -- Enfant
-Enfant "1" -- "1..*" Planning
-Enfant "1" -- "1..*" Impot
-Planning "1..12" -- "1" Impot
+Enfant "1" --|{ "1..*" Garde : IdEnfant
 
+class JoinGardeMois
+{
+    + IdGarde : int
+    + IdMois : int
+}
+
+Garde -- JoinGardeMois
+Mois -- JoinGardeMois
+
+class Impot
+{
+    + IdImpot : int
+    + Annee : int
+    + IdEnfant : int
+}
+
+class JoinImpot
+{
+    + IdGarde : int
+    + IdMois : int
+    + IdImpot : int
+}
+
+Impot -- JoinImpot
+JoinGardeMois -- JoinImpot
 
 @enduml

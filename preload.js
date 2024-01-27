@@ -2,8 +2,17 @@
    as well as Electron's renderer process modules and some polyfilled Node.js functions.
    https://www.electronjs.org/docs/latest/tutorial/sandbox */
 
-window.addEventListener('DOMContentLoaded', () => {
-    let testcontrat = window.bridge.getContrats
+// j'ai ajouté le async mais enlever si ça bug
+//test pour afficher les contrats
+   window.addEventListener('DOMContentLoaded', async () => {
+    let testcontrat = window.bridge.getContrats();
+    let divContrats = document.getElementById("testcontrat");
+    let contratNb = testcontrat.join("<br />");
+    divContrats.innerHTML = contratNb;
+
+
+
+
     
     const replaceText = (selector, text) => {
         //Récupère des éléments html avec leur id

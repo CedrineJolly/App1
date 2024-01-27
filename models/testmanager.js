@@ -2,7 +2,7 @@ var dbmanager = require('dbmanager');
 var db = dbmanager.db;
 
 //test pour obtenir toutes les infos de la classe Contrat de la bdd
-exports.getNames()
+exports.getContrats()
 {
     const sql = "SELECT * from Contrat";
     let statement = db.prepare(sql);

@@ -3,6 +3,8 @@
    https://www.electronjs.org/docs/latest/tutorial/sandbox */
 
 window.addEventListener('DOMContentLoaded', () => {
+    let testcontrat = window.bridge.getContrats
+    
     const replaceText = (selector, text) => {
         //Récupère des éléments html avec leur id
         const element = document.getElementById(selector)
@@ -16,11 +18,11 @@ window.addEventListener('DOMContentLoaded', () => {
 
 const testManager = require("./models/testmanager");
 const {contextBridge} = require("electron");
-const getNames = () => 
+const getContrats = () => 
 {
-    return testManager.getNames();
+    return testManager.getContrats();
 }
 
 contextBridge.exposeInMainWorld("bridge", {
-    getNames : getNames
+    getContrats : getContrats
 })

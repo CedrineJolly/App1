@@ -1,4 +1,5 @@
-/*const sqlite3 = require('sqlite3');
+/*Fichier test pour connecter la bdd
+const sqlite3 = require('sqlite3');
 const dbname = 'Database.db';
 
 //Ouverture de la base de données

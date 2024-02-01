@@ -26,6 +26,14 @@ app.whenReady().then(() => {
         //si la fenêtre n'est pas ouverte mais que le logiciel tourne, créer une fenêtre
         if (BrowserWindow.getAllWindows().length === 0)
             createWindow()
+
+        /*Connexion à la base de données SQLite3
+        let db = new sqlite3.Database('Database.db', (err) => {
+        if (err) {
+            return console.error(err.message);
+        }
+        console.log('Connected to SQlite database.');
+        });*/
     })
 })
 

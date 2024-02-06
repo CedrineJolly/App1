@@ -17,7 +17,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 const testManager = require('./models/testmanager');
 
-const {contextBridge} = require("electron");
+const {contextBridge} = require('electron');
 const getContrats = () => 
 {
     return testManager.getContrats();

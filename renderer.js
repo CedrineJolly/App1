@@ -8,4 +8,4 @@ window.addEventListener('DOMContentLoaded', async () => {
         return elem.Type;
      }).join("<br/>");
     divContrats.innerHTML = contratNb; 
-})
+});

@@ -27,7 +27,8 @@ app.whenReady().then(() => {
         if (BrowserWindow.getAllWindows().length === 0)
             createWindow()
 
-        /*Connexion à la base de données SQLite3
+        //--- test avec le fichier connectDb.js
+        /*Connexion à la base de données SQLite3 
         let db = new sqlite3.Database('Database.db', (err) => {
         if (err) {
             return console.error(err.message);

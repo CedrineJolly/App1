@@ -12,6 +12,7 @@ export const getContrats = () =>
 //insertion d'un nouveau contrat
 export const createContrat = (contratData) =>
 {
+    console.log(contratData);
     const stmt = db.prepare('INSERT INTO Contrat (nom, prenom, tpsLundi) VALUES (?, ?, ?)');
     const info = stmt.run(contratData.nom, contratData.prenom, contratData.heuresLundi);
     if(info.changes == 1) {
@@ -19,3 +20,4 @@ export const createContrat = (contratData) =>
     }
     return -1;
 }
+

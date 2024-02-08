@@ -1,4 +1,4 @@
-## Les étapes oréliminaires
+## Les étapes préliminaires
 Installer Node.js
 Installer Electron.js
 (base de données créée et suivie avec DBBeaver)

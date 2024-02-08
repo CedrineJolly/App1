@@ -1,5 +1,5 @@
-import { contextBridge, ipcRenderer } from 'electron';
-import { getContrats } from './models/contratsmanager.js';
+import { contextBridge } from 'electron';
+import { getContrats, createContrat } from './models/contratsmanager.js';
 /* The preload script runs before. It has access to web APIs
    as well as Electron's renderer process modules and some polyfilled Node.js functions.
    https://www.electronjs.org/docs/latest/tutorial/sandbox */
@@ -18,5 +18,6 @@ import { getContrats } from './models/contratsmanager.js';
 })*/
 
 contextBridge.exposeInMainWorld("bridge", {
-    getContrats: getContrats
+    getContrats: getContrats,
+    createContrat: createContrat
 })

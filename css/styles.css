@@ -2302,6 +2302,13 @@ progress {
   color: #6c757d;
 }
 
+.form-label-text {
+  font-size: 1em;
+  color: #6c757d;
+  font-size: inherit;
+  margin-left: 0.5rem;
+}
+
 .form-control {
   display: block;
   width: 100%;

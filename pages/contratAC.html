@@ -52,6 +52,7 @@
     <div class="row justify-content-center">
     <div class="col-lg-8 col-xl-7">
     <script src="../renderers/createcontrat.js" type="module"></script>
+    <script src="../renderers/createenfant.js" type="module"></script>
     <form id="contratForm">
         
         <section>
@@ -71,6 +72,26 @@
                     <label for="Nom">Nom</label>
                 </div>
         </div>
+        </div>
+        </section>
+
+        <section>
+        <div>
+                <h4 class="page-section-heading text-center text-uppercase text-secondary mb-3 mt-5">Type de contrat</h4>
+            </div>
+        <div>
+            <div>
+                <input class="form-check-input" id="AC" type="radio" name="typecontrat" value="1">
+                <label class="form-label-text" for="AC">Année Complète</label>
+            </div>
+            <div>
+                <input class="form-check-input" id="AI" type="radio" name="typecontrat" value="2">
+                <label class="form-label-text" for="AI">Année Incomplète</label>
+            </div>
+            <div>
+                <input class="form-check-input" id="PP" type="radio" name="typecontrat" value="3">
+                <label class="form-label-text" for="AC">Proposition personnelle</label>
+            </div>
         </div>
         </section>
 

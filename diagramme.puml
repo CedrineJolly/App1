@@ -8,9 +8,8 @@ class Contrat
     + TpsMer : int
     + TpsJeu : int
     + TpsVen : int
-    + TotHSemaine : int
-    + SalaireNet : int
-    + ResteAPayer : int
+    + TarifHoraire : int
+    + Archive : int
 }
 
 class Enfant

@@ -13,7 +13,7 @@ export const getContrats = () =>
 export const createContrat = (contratData) =>
 {
     console.log(contratData);
-    const stmt = db.prepare('INSERT INTO Contrat (nom, prenom, tpsLundi) VALUES (?, ?, ?)');
+    const stmt = db.prepare('INSERT INTO Contrat (TpsLun, TpsMar, TpsMer) VALUES (?, ?, ?)');
     const info = stmt.run(contratData.nom, contratData.prenom, contratData.heuresLundi);
     if(info.changes == 1) {
         return info.lastInsertRowid

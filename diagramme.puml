@@ -11,11 +11,6 @@ class Contrat
     + TotHSemaine : int
     + SalaireNet : int
     + ResteAPayer : int
-
-    + TotalSemaine() : int
-    + CalculSalaire() : int
-    + CalculReste() : int
-
 }
 
 class Enfant
@@ -39,12 +34,6 @@ class Mois
     + NbJActivite : int
     + SalaireNetPaye : int
     + MontantNetPaye : int
-    + CalculNbJAcc() : int
-    + CalculEntretien() : int
-    + CalculRepas() : int
-    + CalculJAct() : int
-    + CalculSalireNet() : int
-    + CalculMontantPaye() : int
 
 }
 

@@ -1,6 +1,6 @@
 # Install le projet
 
-Installer Node.js (dernière version stable de préférence)
+Installer Node.js (dernière version de préférence)
 
 Lancer la commande
 
@@ -34,14 +34,13 @@ La base sqlite est utilisée pour ce projet.
 Le fichier de base de données est le fichier `database.db`.
 Ce fichier contient uniquement le modèle de données.
 
-Pour le faire évoluer, utiliser un outils comme `DBeaver`.
-
-:warning: le fichier database.db est ajouté au `.gitignore`, pour le commit il est nécessaire de modifier le `.gitignore` le temps de commit les modifications sur ce fichier.
-
+Pour visualiser les données, utiliser un outils comme `DBeaver`.
 
 # Packager le projet
 
-TODO Il faudra voir comment packager le projet pour pouvoir le lancer sans avoir à lancer une commande npm run start et éventuellement si c'est possible sans avoir à installer nodejs
+TODO Il faudra voir comment packager le projet pour pouvoir le lancer sans avoir à lancer une commande npm run start et éventuellement si c'est possible sans avoir à installer nodejs.
+
+Objectif : obtenir un icône exécutable directement sur le desktop.
 
 # Structure des sources du projet
 

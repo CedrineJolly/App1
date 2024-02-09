@@ -9,11 +9,11 @@ export const getContrats = () =>
     return res;
 }
 
-//insertion d'un nouveau contrat
+//insertion d'un nouveau contrat dans la bdd
 export const createContrat = (contratData) =>
 {
     console.log(contratData);
-    const stmt = db.prepare('INSERT INTO Contrat (TpsLun, TpsMar, TpsMer) VALUES (?, ?, ?)');
+    const stmt = db.prepare('INSERT INTO Contrat (TpsLun, TpsMar, TpsMer, TpsJeu, TpsVen) VALUES (?, ?, ?, ?, ?)');
     const info = stmt.run(contratData.nom, contratData.prenom, contratData.heuresLundi);
     if(info.changes == 1) {
         return info.lastInsertRowid

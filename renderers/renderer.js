@@ -1,4 +1,6 @@
-//test pour afficher les contrats
+//ANCIEN RENDERER -- NE PAS DéCOMMENTER
+
+/*test pour afficher les contrats
 window.addEventListener('DOMContentLoaded', async () => {
     let testcontrat = window.bridge.getContrats();
     let divContrats = document.getElementById("testcontrat");
@@ -8,4 +10,4 @@ window.addEventListener('DOMContentLoaded', async () => {
         return elem.Type;
      }).join("<br/>");
     divContrats.innerHTML = contratNb; 
-});
+});*/

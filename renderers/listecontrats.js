@@ -21,7 +21,7 @@ const displayListContrats = () => {
   console.log(contrats)
   // create html string
   const contratsItems = contrats.reduce((html, contrat) => {
-    html += `<li class="contrat-item">Id_Contrat: ${contrat.Id_Contrat}, Type: ${contrat.Type}</li>`
+    html += `<li class="contrat-item">Id_Contrat: ${contrat.IdContrat}, Type: ${contrat.Type}, Lundi: ${contrat.TpsLun}, Mardi: ${contrat.TpsMar},</li>`
   
     return html
   }, '')

@@ -6,8 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-    <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">-->
     <title>Nounou d'Enfer</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
@@ -32,7 +30,7 @@
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
                             href="enfant.html">Enfants</a></li>
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
-                            href="contrats.html">Contrats</a></li>
+                            href="contrat.html">Contrats</a></li>
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
                             href="impots.html">Impôts</a></li>
                 </ul>
@@ -41,7 +39,7 @@
     </nav>
 
     <header class="masthead bg-secondary text-white text-center">
-        <h2>Proposition personnelle</h2>
+        <h1 class="masthead-heading text-uppercase mb-0">CONTRATS</h1>
             <!-- Icon Divider-->
             <div class="divider-custom divider-light">
                 <div class="divider-custom-line"></div>
@@ -50,10 +48,12 @@
             </div>
     </header>
 
-    <!-- Formulaire Simulation PP-->
+    <!-- Formulaire Simulation AC-->
     <div class="row justify-content-center">
     <div class="col-lg-8 col-xl-7">
-    <form id="contactForm">
+    <script src="../renderers/createcontrat.js" type="module"></script>
+    <script src="../renderers/createenfant.js" type="module"></script>
+    <form id="contratForm">
         
         <section>
         <div>
@@ -72,6 +72,30 @@
                     <label for="Nom">Nom</label>
                 </div>
         </div>
+        </div>
+        </section>
+
+        <section>
+        <div>
+                <h4 class="page-section-heading text-center text-uppercase text-secondary mb-3 mt-5">Type de contrat</h4>
+            </div>
+        <div>
+            <div>
+                <input class="form-check-input" id="AC" type="radio" name="typecontrat" value="1">
+                <label class="form-label-text" for="AC">Année Complète</label>
+            </div>
+            <div>
+                <input class="form-check-input" id="AI" type="radio" name="typecontrat" value="2">
+                <label class="form-label-text" for="AI">Année Incomplète</label>
+            </div>
+            <div>
+                <input class="form-check-input" id="PP" type="radio" name="typecontrat" value="3">
+                <label class="form-label-text" for="PP">Proposition personnelle</label>
+            </div>
+        </div>
+        <div class="form-floating mb-3">
+            <input class="form-control" id="tarif" type="number" placeholder="Tarif" data-sb-validations="" />
+            <label for="tarif">Tarif horaire</label>
         </div>
         </section>
 
@@ -108,10 +132,24 @@
     </form>
     </div>
     </div>
-    <!--script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script-->
+     <!-- Icon Divider-->
+    <div class="divider-custom">
+        <div class="divider-custom-line"></div>
+        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+        <div class="divider-custom-line"></div>
+    </div>
+    
+    <!-- Affichage des informations de simulation -->
+    <script src="renderers/simucontrat.js" type="module"></script>
+    <section>
+        <h4 class="page-section-heading text-center text-uppercase text-secondary mb-3 mt-5">Simulation du contrat : </h4>
+        <ul id="contratSimu"></ul>
+    </section>
+    
     <p>
 
     </p>
+
 
     <!-- Footer -->
     <footer>

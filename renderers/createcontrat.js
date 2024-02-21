@@ -33,6 +33,7 @@ document.getElementById('contratForm').addEventListener('submit', (evt) => {
     }
   }
   const tarifHoraire = document.getElementById('tarif').value;
+  const nbSemaines = document.getElementById('semaines').value;
   const heuresLundi = document.getElementById('lundi').value;
   const heuresMardi = document.getElementById('mardi').value;
   const heuresMercredi = document.getElementById('mercredi').value;
@@ -42,6 +43,7 @@ document.getElementById('contratForm').addEventListener('submit', (evt) => {
   const idContrat = window.bridge.createContrat({
     type: type,
     tarifHoraire: tarifHoraire,
+    nbSemaines: nbSemaines,
     heuresLundi: heuresLundi,
     heuresMardi: heuresMardi,
     heuresMercredi: heuresMercredi,

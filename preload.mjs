@@ -1,6 +1,5 @@
 import { contextBridge } from 'electron';
-import { getContrats, createContrat } from './models/contratsmanager.js';
-import { getTheContrat } from './models/contratsmanager.js';
+import { getContrats, createContrat, getTheContrat } from './models/contratsmanager.js';
 import { createEnfant } from './models/enfantmanager.js';
 
 /* The preload script runs before. It has access to web APIs

@@ -13,36 +13,31 @@ const displaySimuContrats = () => {
     let Salaire = 0;
     const TarifHoraire = contrat.TarifHoraire;
     const NbSemaines = contrat.NbSemaines;
+    let MontantAide = 0;
+    let SalaireCAF = 0;
 
-    html += `<li class="contrat-item"> Temps total par semaines : ${TpsTot} </li>`
-    
+    html += `<h6 class="contrat-text"> Temps total par semaines : ${TpsTot} heures </h6>`
+    //Affichage du salaire selon le type de contrat
     if(contrat.Type == 'AC'){
-      Salaire = (TpsTot * TarifHoraire * 52)/12;
-      html += `<li class="contrat-item"> Salaire fixe net à payer par mois: ${Salaire} </li>`
+      Salaire = ((TpsTot * TarifHoraire * 52)/12).toFixed(2);
+      html += `<h6 class="contrat-text"> Salaire fixe net à payer par mois : ${Salaire} € </h6>`
     }
     else if (contrat.Type == 'AI'){
-      Salaire = (TpsTot * TarifHoraire * NbSemaines)/12;
-      html += `<li class="contrat-item"> Salaire fixe net à payer par mois: ${Salaire}</li>`
+      Salaire = ((TpsTot * TarifHoraire * NbSemaines)/12).toFixed(2);
+      html += `<h6 class="contrat-text"> Salaire fixe net à payer par mois : ${Salaire} € </h6>`
     }
     else{
-      html += `<li class="contrat-item">  </li>`
+      Salaire = 0 ; //à compléter
+      html += `<h6 class="contrat-text"> Salaire fixe net à payer par mois : ${Salaire} € </h6>`
     }
 
+    //Calcul des aides et déduction du salaire net
+    html += `<p></p> <h6 class="contrat-text"; style="color: #2c3e50";> Aide CAF </h6>`
+    html += `<p></p> <h6 class="contrat-text"> Vous avez le droit à ${MontantAide} € d'aide de la CAF </h6>`
+    SalaireCAF = Salaire - MontantAide;
+    html += `<h6 class="contrat-text"> Salaire restant à payer après déduction : ${SalaireCAF} € </h6>`
+
     return html
-    
-    // Test de syntaxe avec un switch
-    /* switch (contrat.Type) {
-      case 'AC':
-        Salaire = (TpsTot * TarifHoraire * 52) / 12;
-        html += `<li class="contrat-item"> Salaire fixe net à payer par mois: ${Salaire} </li>`;
-        break;
-      case 'AI':
-        Salaire = (TpsTot * TarifHoraire * NbSemaines) / 12;
-        html += `<li class="contrat-item"> Salaire fixe net à payer par mois: ${Salaire}</li>`;
-        break;
-      default:
-        html += `<li class="contrat-item">  </li>`; 
-        } */
 }
   , '')
   

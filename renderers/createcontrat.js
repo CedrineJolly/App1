@@ -2,8 +2,22 @@
  * Création d'un contrat avec le formulaire
  */
 
+document.addEventListener("DOMContentLoaded", function() {
+  const tarifHoraire = document.getElementById('tarif').value;
+  const nbSemaines = document.getElementById('semaines').value;
+
+  // Définition des valeurs par défaut si les champs sont vides
+  if (tarifHoraire === '') {
+      document.getElementById('tarif').value = '4'; // Valeur par défaut pour le tarif horaire
+  }
+  if (nbSemaines === '') {
+      document.getElementById('semaines').value = '52'; // Valeur par défaut pour le nombre de semaines de garde
+  }
+});
+
 //Lorsque le bouton submit du formulaire est activé : la commande se lance
 document.getElementById('contratForm').addEventListener('submit', (evt) => {
+  
   // prevent default refresh functionality of forms
   evt.preventDefault()
 
@@ -32,8 +46,10 @@ document.getElementById('contratForm').addEventListener('submit', (evt) => {
       break;
     }
   }
+
   const tarifHoraire = document.getElementById('tarif').value;
   const nbSemaines = document.getElementById('semaines').value;
+
   const heuresLundi = document.getElementById('lundi').value;
   const heuresMardi = document.getElementById('mardi').value;
   const heuresMercredi = document.getElementById('mercredi').value;

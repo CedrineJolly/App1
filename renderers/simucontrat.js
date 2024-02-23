@@ -9,8 +9,8 @@ const displaySimuContrats = () => {
   // create html string
   const contratsItems = derniercontrat.reduce((html, contrat) => {
     //Récupération des données remplies dans le formulaire
-    const TpsTot = contrat.TpsLun + contrat.TpsMar + contrat.TpsLMer + contrat.TpsJeu + contrat.TpsVen;
-    const Salaire = 0;
+    const TpsTot = contrat.TpsLun + contrat.TpsMar + contrat.TpsMer + contrat.TpsJeu + contrat.TpsVen;
+    let Salaire = 0;
     const TarifHoraire = contrat.TarifHoraire;
     const NbSemaines = contrat.NbSemaines;
 
@@ -29,7 +29,22 @@ const displaySimuContrats = () => {
     }
 
     return html
-  }, '')
+    
+    // Test de syntaxe avec un switch
+    /* switch (contrat.Type) {
+      case 'AC':
+        Salaire = (TpsTot * TarifHoraire * 52) / 12;
+        html += `<li class="contrat-item"> Salaire fixe net à payer par mois: ${Salaire} </li>`;
+        break;
+      case 'AI':
+        Salaire = (TpsTot * TarifHoraire * NbSemaines) / 12;
+        html += `<li class="contrat-item"> Salaire fixe net à payer par mois: ${Salaire}</li>`;
+        break;
+      default:
+        html += `<li class="contrat-item">  </li>`; 
+        } */
+}
+  , '')
   
   listeData.innerHTML = contratsItems
 }

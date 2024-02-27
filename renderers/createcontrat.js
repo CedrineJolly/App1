@@ -6,6 +6,7 @@ import {displaySimuContrats} from './simucontrat.js'
 document.addEventListener("DOMContentLoaded", function() {
   const tarifHoraire = document.getElementById('tarif').value;
   const nbSemaines = document.getElementById('semaines').value;
+  const aideCaf = document.getElementById('caf').value;
 
   // Définition des valeurs par défaut si les champs sont vides
   if (tarifHoraire === '') {
@@ -13,6 +14,10 @@ document.addEventListener("DOMContentLoaded", function() {
   }
   if (nbSemaines === '') {
       document.getElementById('semaines').value = '52'; // Valeur par défaut pour le nombre de semaines de garde
+  }
+
+  if (aideCaf === '') {
+      document.getElementById('caf').value = '319.07'; // Valeur par défaut ptranche 2 pour la CAF
   }
 });
 
@@ -57,6 +62,8 @@ document.getElementById('contratForm').addEventListener('submit', (evt) => {
   const heuresJeudi = document.getElementById('jeudi').value;
   const heuresVendredi = document.getElementById('vendredi').value;
 
+  const aideCaf = document.getElementById('caf').value;
+
   const idContrat = window.bridge.createContrat({
     type: type,
     tarifHoraire: tarifHoraire,
@@ -65,7 +72,8 @@ document.getElementById('contratForm').addEventListener('submit', (evt) => {
     heuresMardi: heuresMardi,
     heuresMercredi: heuresMercredi,
     heuresJeudi: heuresJeudi,
-    heuresVendredi: heuresVendredi
+    heuresVendredi: heuresVendredi,
+    aideCaf: aideCaf
   })
   if(idContrat > 0) {
     const idEnfant = window.bridge.createEnfant({

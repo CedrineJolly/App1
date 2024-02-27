@@ -22,8 +22,8 @@ export const getTheContrat = () =>
 export const createContrat = (contratData) =>
 {
     console.log(contratData);
-    const stmt = db.prepare('INSERT INTO Contrat (Type, TarifHoraire, NbSemaines, TpsLun, TpsMar, TpsMer, TpsJeu, TpsVen) VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
-    const info = stmt.run(contratData.type, contratData.tarifHoraire, contratData.nbSemaines, contratData.heuresLundi, contratData.heuresMardi, contratData.heuresMercredi, contratData.heuresJeudi, contratData.heuresVendredi);
+    const stmt = db.prepare('INSERT INTO Contrat (Type, TarifHoraire, NbSemaines, TpsLun, TpsMar, TpsMer, TpsJeu, TpsVen, AideCaf) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)');
+    const info = stmt.run(contratData.type, contratData.tarifHoraire, contratData.nbSemaines, contratData.heuresLundi, contratData.heuresMardi, contratData.heuresMercredi, contratData.heuresJeudi, contratData.heuresVendredi, contratData.aideCaf);
     if(info.changes == 1) {
         return info.lastInsertRowid
     }

@@ -13,7 +13,7 @@ export const displaySimuContrats = () => {
     let Salaire = 0;
     const TarifHoraire = parseFloat(contrat.TarifHoraire);
     const NbSemaines = parseFloat(contrat.NbSemaines);
-    let MontantAide = 319.07;
+    let MontantAide = parseFloat(contrat.AideCaf);
     let SalaireCAF = 0;
     let CongesPayes = 0;
 

@@ -94,11 +94,11 @@
             </div>
         </div>
         <div class="form-floating mb-3">
-            <input class="form-control" id="tarif" type="number" placeholder="Tarif" data-sb-validations="" />
+            <input class="form-control" id="tarif" type="text" placeholder="Tarif" data-sb-validations="" />
             <label for="tarif">Tarif horaire</label>
         </div>
         <div class="form-floating mb-3">
-            <input class="form-control" id="semaines" type="number" placeholder="semaines" data-sb-validations="" />
+            <input class="form-control" id="semaines" type="text" placeholder="semaines" data-sb-validations="" />
             <label for="semaines">Nombre de semaines de garde</label>
         </div>
         </section>
@@ -108,23 +108,23 @@
                 <h4 class="page-section-heading text-center text-uppercase text-secondary mb-3 mt-5">Temps de garde</h4>
             </div>
         <div class="form-floating mb-3">
-            <input class="form-control" id="lundi" type="number" placeholder="Lundi" data-sb-validations="" />
+            <input class="form-control" id="lundi" type="text" placeholder="Lundi" data-sb-validations="" />
             <label for="lundi">Lundi</label>
         </div>
         <div class="form-floating mb-3">
-            <input class="form-control" id="mardi" type="number" placeholder="Mardi" data-sb-validations="" />
+            <input class="form-control" id="mardi" type="text" placeholder="Mardi" data-sb-validations="" />
             <label for="mardi">Mardi</label>
         </div>
         <div class="form-floating mb-3">
-            <input class="form-control" id="mercredi" type="number" placeholder="Mercredi" data-sb-validations="" />
+            <input class="form-control" id="mercredi" type="text" placeholder="Mercredi" data-sb-validations="" />
             <label for="mercredi">Mercredi</label>
         </div>
         <div class="form-floating mb-3">
-            <input class="form-control" id="jeudi" type="number" placeholder="Jeudi" data-sb-validations="" />
+            <input class="form-control" id="jeudi" type="text" placeholder="Jeudi" data-sb-validations="" />
             <label for="jeudi">Jeudi</label>
         </div>
         <div class="form-floating mb-3">
-            <input class="form-control" id="vendredi" type="number" placeholder="Vendredi" data-sb-validations="" />
+            <input class="form-control" id="vendredi" type="text" placeholder="Vendredi" data-sb-validations="" />
             <label for="vendredi">Vendredi</label>
         </div>
         </section>
@@ -153,6 +153,11 @@
 
         <div class="d-grid">
             <button class="btn btn-primary btn-lg mt-4 mb-3" id="submitEnfant" type="submit">Valider le contrat</button>
+        </div>
+
+    <script src="../renderers/deletecontrat.js" type="module"></script>
+        <div class="d-grid">
+            <button class="btn btn-danger btn-lg mt-2 mb-3" id="deleteContrat" type="submit">Supprimer la simulation</button>
         </div>
 
     </section>

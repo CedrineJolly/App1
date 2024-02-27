@@ -9,7 +9,7 @@ export const getContrats = () =>
     return res;
 }
 
-//Sélectionne le contrat avec le dernier id
+//Sélectionne le dernier contrat créé avec son id
 export const getTheContrat = () =>
 {
     const sql = "SELECT * from Contrat WHERE IdContrat = (SELECT MAX(IdContrat) FROM Contrat)";
@@ -28,5 +28,18 @@ export const createContrat = (contratData) =>
         return info.lastInsertRowid
     }
     return -1;
+}
+
+//suppression d'un contrat de la base de données en fonction de son id
+export const deleteContrat = () => {
+    const stmt = db.prepare('DELETE FROM Contrat WHERE IdContrat = (SELECT MAX(IdContrat) FROM Contrat)');
+    const info = stmt.run();
+    if (info.changes === 1) {
+        console.log('Le contrat a été supprimé avec succès.');
+        return true; // La suppression a réussi
+    } else {
+        console.log('Erreur lors de la suppression du contrat.');
+        return false; // La suppression a échoué
+    }
 }
 

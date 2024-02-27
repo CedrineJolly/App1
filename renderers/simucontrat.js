@@ -1,7 +1,7 @@
 /*
  * Affiche la simulation d'un contrat selon les données entrées dans le form
  */
-const displaySimuContrats = () => {
+export const displaySimuContrats = () => {
   // On récupère 
   const listeData = document.getElementById('contratSimu')
   const derniercontrat = window.bridge.getTheContrat();
@@ -9,10 +9,10 @@ const displaySimuContrats = () => {
   // create html string
   const contratsItems = derniercontrat.reduce((html, contrat) => {
     //Récupération des données remplies dans le formulaire
-    const TpsTot = contrat.TpsLun + contrat.TpsMar + contrat.TpsMer + contrat.TpsJeu + contrat.TpsVen;
+    const TpsTot =  parseFloat(contrat.TpsLun) +  parseFloat(contrat.TpsMar) +  parseFloat(contrat.TpsMer) +  parseFloat(contrat.TpsJeu) +  parseFloat(contrat.TpsVen);
     let Salaire = 0;
-    const TarifHoraire = contrat.TarifHoraire;
-    const NbSemaines = contrat.NbSemaines;
+    const TarifHoraire = parseFloat(contrat.TarifHoraire);
+    const NbSemaines = parseFloat(contrat.NbSemaines);
     let MontantAide = 0;
     let SalaireCAF = 0;
 

@@ -1,6 +1,7 @@
 /*
  * Création d'un contrat avec le formulaire
  */
+import {displaySimuContrats} from './simucontrat.js'
 
 document.addEventListener("DOMContentLoaded", function() {
   const tarifHoraire = document.getElementById('tarif').value;
@@ -75,4 +76,17 @@ document.getElementById('contratForm').addEventListener('submit', (evt) => {
   else {
     console.log('Erreur lors de la création du contrat.')
   }
+
+  // Sauvegarde la position actuelle de la fenêtre
+  const scrollPosition = window.scrollY;
+
+  // Appelle la fonction pour afficher la simulation
+  displaySimuContrats();
+
+  // Rafraîchit la page
+  location.reload();
+
+  // Rétablit la position de la fenêtre après le rechargement
+  window.scrollTo(0, scrollPosition);
+
 })

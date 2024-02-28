@@ -1,7 +1,8 @@
 /*
  * Affiche la simulation d'un contrat selon les données entrées dans le form
  */
-export const displaySimuContrats = () => {
+
+export const SimuContrats = () => {
   // On récupère 
   const listeData = document.getElementById('contratSimu')
   const derniercontrat = window.bridge.getTheContrat();
@@ -48,4 +49,4 @@ export const displaySimuContrats = () => {
   listeData.innerHTML = contratsItems
 }
 
-displaySimuContrats()
+SimuContrats()

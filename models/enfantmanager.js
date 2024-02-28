@@ -11,3 +11,12 @@ export const createEnfant = (enfantData) =>
     }
     return -1;
 }
+
+//Sélectionne le dernier enfant créé avec son id
+export const getEnfant = () =>
+{
+    const sql = "SELECT * from Enfant WHERE IdEnfant = (SELECT MAX(IdEnfant) FROM Enfant)";
+    let statement = db.prepare(sql);
+    let res = statement.all();
+    return res;
+}

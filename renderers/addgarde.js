@@ -1,14 +1,16 @@
 /*
- * Ajout d'un horaire de garde
+ * Ajout d'un temps de garde selon la date dans la bdd
  */
 
 //Lorsque la case du tableau est remplie, enregistrement
+
+// changer la réception par form
 document.getElementById('contratForm').addEventListener('submit', (evt) => {
 
 })
 
-  const date = document.getElementById('tarif').value;
-  const nbHeures = document.getElementById('semaines').value;
+  const date = dateDuJour;
+  const nbHeures = totalHeures;
 
   if(idEnfant > 0) {
     const idGarde = window.bridge.putGarde({

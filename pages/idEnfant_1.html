@@ -53,6 +53,7 @@
     </header>
 
     <!-- Visualisation planning de l'enfant -->
+    <script src="../renderers/addgarde.js" type="module"></script>
     <section>
         <div>
             <h4 class="page-section-heading text-center text-uppercase text-secondary mb-5 mt-5">Planning Février</h4>
@@ -74,6 +75,7 @@
             <script> 
                 // Récupérer la référence du tableau
                 const table = document.querySelector('.table');
+                let dateDuJour = "";
 
                 // Créer un tableau pour stocker les résultats
                 const results = [];
@@ -90,6 +92,8 @@
                         <td class="col"><input type="text" class="form-control hDepart" oninput="calculateGarde(this)" onclick="enableInput(this)"></td>
                         <td class="col"><div class="form-floating mb-1 gardeResult"></div></td>
                     `;
+
+                    dateDuJour = `${i}/02/2024`;
 
                     // Ajouter la ligne au tableau
                     table.appendChild(row);
@@ -128,12 +132,15 @@
                     }
                 }
 
+                let totalHeures = 0;
+
                 function updateTotal() {
                     //const total = results.reduce((acc, cur) => acc + cur, 0);
                     let total = 0;
                     for(let i = 0; i < results.length ; i++) {
                         total += results[i];
                     }
+                    totalHeures = total;
                     const totalCell = document.querySelector('.total-cell');
                     totalCell.innerHTML = `<h6 class="contrat-text">${total} Heures</h6>`;
                 }
@@ -152,13 +159,49 @@
         </div>
     </section>
 
-    <!-- Affichage des informations de déclaratif CAF -->
+    <!-- Calcul des informations à déclarer à la CAF pour chaque mois -->
     <div class="row justify-content-center">
     <div class="col-lg-8 col-xl-7">
-    <script src=" " type="module"></script>
     <section>
         <h4 class="page-section-heading text-center text-uppercase text-secondary mb-5 mt-4">TOTAL</h4>
-        <p id=""></p>
+        <script>
+            
+            const infos = document.createElement('p');
+
+            //Si la ligne de la cellule est remplie, alors il s'agit d'un jour d'accueil
+            let nbJAccueil = 6;
+            infos.innerHTML = `<h6 class="contrat-text"> Nombre de jours d'accueil : </h6>`;
+
+            //Calcul indemnité d'entretien
+            let entretien = 0;
+            if(nbJAccueil>8)
+                entretien = 3.69*nbJAccueil;
+            else
+                entretien = 2.65*nbJAccueil;
+            infos.innerHTML = `<h6 class="contrat-text"> Indemnité d'entretien : ${entretien} €</h6>`;
+
+            //Calcul indemnité de repas
+            let repas = 0;
+            infos.innerHTML = `<h6 class="contrat-text"> Indemnité de repas : ${repas} €</h6>`;
+
+            //Calcul heures normales
+            let heuresNormales = 0;
+            infos.innerHTML = `<h6 class="contrat-text"> Nombre d'heures normales : ${heuresNormales} €</h6>`;
+
+            //Calcul heures normales
+            let jActivite = 0;
+            infos.innerHTML = `<h6 class="contrat-text"> Nombre de jours d'activité : ${jActivite} €</h6>`;
+
+            //Salaire net
+            let salaireNet = 0;
+            infos.innerHTML = `<h6 class="contrat-text"> Salaire net : ${salaireNet} €</h6>`;
+
+            //Montant net
+            let montantNet = 0;
+            infos.innerHTML = `<h6 class="contrat-text"> Salaire net : ${montantNet} €</h6>`;
+
+
+        </script>
 
 
     </section>

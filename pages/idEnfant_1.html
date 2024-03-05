@@ -64,30 +64,49 @@
         <div class="col-lg-8 col-xl-7">
             <table class="table">
                 <tr class="row">
-                    <td class="col"><div class="form-floating mb-3"><h6>Jour</h6></div></td>
-                    <td class="col"><div class="form-floating mb-3"><h6>Heure Arrivée</h6></div></td>
-                    <td class="col"><div class="form-floating mb-3"><h6>Heure Départ</h6></div></td>
-                    <td class="col"><div class="form-floating mb-3"><h6>Temps</h6></div></td>
-                </tr>
-                <tr class="row">
-                    <td class="col"><div class="form-floating mb-3">01</div></td>
-                    <td class="col"><input type="text" class="form-control" id="hArriv" oninput="calculateGarde()" readonly onclick="enableInput(this)"></td>
-                    <td class="col"><input type="text" class="form-control" id="hDepart" oninput="calculateGarde()" readonly onclick="enableInput(this)"></td>
-                    <td class="col">
-                        <div class="form-floating mb-3" id="gardeResult"></div>
-                    </td>
+                    <td class="col"><div class="form-floating mb-2"><h6>Jour</h6></div></td>
+                    <td class="col"><div class="form-floating mb-2"><h6>Heure Arrivée</h6></div></td>
+                    <td class="col"><div class="form-floating mb-2"><h6>Heure Départ</h6></div></td>
+                    <td class="col"><div class="form-floating mb-2"><h6>Temps</h6></div></td>
                 </tr>
             </table>
 
-            <script>
+            <script> 
+                // Récupérer la référence du tableau
+                const table = document.querySelector('.table');
+
+                // Créer un tableau pour stocker les résultats
+                const results = [];
+
+                // Créer 31 lignes au tableau
+                for (let i = 1; i <= 31; i++) {
+                    const row = document.createElement('tr'); // Créer une nouvelle ligne
+                    row.classList.add('row'); // Ajouter la class "row"
+
+                    // Ajouter les cellules à la ligne
+                    row.innerHTML = `
+                        <td class="col"><div class="form-floating mb-1">${i}</div></td>
+                        <td class="col"><input type="text" class="form-control hArriv" oninput="calculateGarde(this)" onclick="enableInput(this)"></td>
+                        <td class="col"><input type="text" class="form-control hDepart" oninput="calculateGarde(this)" onclick="enableInput(this)"></td>
+                        <td class="col"><div class="form-floating mb-1 gardeResult"></div></td>
+                    `;
+
+                    // Ajouter la ligne au tableau
+                    table.appendChild(row);
+                }
+
+                //Activation de l'édition des champs
                 function enableInput(element) {
                     element.removeAttribute("readonly");
                     element.focus();
                 }
 
-                function calculateGarde() {
-                    const heureArrivee = document.getElementById('hArriv').value;
-                    const heureDepart = document.getElementById('hDepart').value;
+                //Calcul du temps de garde
+                function calculateGarde(element) {
+                    const row = element.closest('tr');
+                    const heureArrivee = row.querySelector('.hArriv').value;
+                    const heureDepart = row.querySelector('.hDepart').value;
+                    const gardeResult = row.querySelector('.gardeResult');
 
                     // Vérifier si les deux champs sont remplis
                     if (heureArrivee && heureDepart) {
@@ -96,16 +115,55 @@
                         const heureDepartNumber = parseFloat(heureDepart);
 
                         // Calcul du temps de garde
-                        const NbHeuresJour = heureDepartNumber - heureArriveeNumber;
+                        const nbHeuresJour = heureDepartNumber - heureArriveeNumber;
 
                         // Mise à jour de l'affichage du résultat
-                        document.getElementById('gardeResult').innerHTML = `<h6 class="contrat-text">${NbHeuresJour}</h6>`;
+                        gardeResult.innerHTML = `<h6 class="contrat-text">${nbHeuresJour}</h6>`;
+
+                        // Ajouter le résultat au tableau des résultats
+                        results.push(nbHeuresJour);
+
+                        // Mettre à jour le total
+                        updateTotal();
                     }
                 }
+
+                function updateTotal() {
+                    //const total = results.reduce((acc, cur) => acc + cur, 0);
+                    let total = 0;
+                    for(let i = 0; i < results.length ; i++) {
+                        total += results[i];
+                    }
+                    const totalCell = document.querySelector('.total-cell');
+                    totalCell.innerHTML = `<h6 class="contrat-text">${total} Heures</h6>`;
+                }
             </script>
+
+            <table class="table">
+                <tr class="row">
+                    <td class="col"><div class="form-floating mb-2"><h6>TOTAL</h6></div></td>
+                    <td class="col"><div class="form-floating mb-2"></div></td>
+                    <td class="col"><div class="form-floating mb-2"></div></td>
+                    <td class="col total-cell"><div class="form-floating mb-2"></div></td>
+                </tr>
+            </table>
+
         </div>
         </div>
     </section>
+
+    <!-- Affichage des informations de déclaratif CAF -->
+    <div class="row justify-content-center">
+    <div class="col-lg-8 col-xl-7">
+    <script src=" " type="module"></script>
+    <section>
+        <h4 class="page-section-heading text-center text-uppercase text-secondary mb-5 mt-4">TOTAL</h4>
+        <p id=""></p>
+
+
+    </section>
+    </div>
+    </div>
 
     
     <!--script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script-->

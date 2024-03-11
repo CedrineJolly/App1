@@ -78,7 +78,7 @@
                 let dateDuJour = "";
 
                 // Créer un tableau pour stocker les résultats
-                const results = [];
+                //const results = [];
 
                 // Créer 31 lignes au tableau
                 for (let i = 1; i <= 31; i++) {
@@ -105,9 +105,13 @@
                     element.focus();
                 }
 
-                //Calcul du temps de garde
+                // Créer un objet pour stocker les résultats
+                const results = {};
+
+                // Calcul du temps de garde
                 function calculateGarde(element) {
                     const row = element.closest('tr');
+                    const dayNumber = row.querySelector('.col:first-child').textContent;
                     const heureArrivee = row.querySelector('.hArriv').value;
                     const heureDepart = row.querySelector('.hDepart').value;
                     const gardeResult = row.querySelector('.gardeResult');
@@ -124,25 +128,24 @@
                         // Mise à jour de l'affichage du résultat
                         gardeResult.innerHTML = `<h6 class="contrat-text">${nbHeuresJour}</h6>`;
 
-                        // Ajouter le résultat au tableau des résultats
-                        results.push(nbHeuresJour);
+                        // Ajouter le résultat à l'objet des résultats
+                        results[dayNumber] = nbHeuresJour;
 
                         // Mettre à jour le total
                         updateTotal();
                     }
                 }
 
-                let totalHeures = 0;
-
                 function updateTotal() {
-                    //const total = results.reduce((acc, cur) => acc + cur, 0);
                     let total = 0;
-                    for(let i = 0; i < results.length ; i++) {
-                        total += results[i];
+                    for (let day in results) {
+                        if (results.hasOwnProperty(day)) {
+                            total += results[day];
+                        }
                     }
                     totalHeures = total;
                     const totalCell = document.querySelector('.total-cell');
-                    totalCell.innerHTML = `<h6 class="contrat-text">${total} Heures</h6>`;
+                    totalCell.innerHTML = `<h6 class="contrat-text">${totalHeures} Heures</h6>`;
                 }
             </script>
 
@@ -164,42 +167,45 @@
     <div class="col-lg-8 col-xl-7">
     <section>
         <h4 class="page-section-heading text-center text-uppercase text-secondary mb-5 mt-4">TOTAL</h4>
+        <div id="infosCAF"></div>
         <script>
             
-            const infos = document.createElement('p');
+            const infos = document.getElementById('infosCAF');
+            infosHTML = '';
 
             //Si la ligne de la cellule est remplie, alors il s'agit d'un jour d'accueil
             let nbJAccueil = 6;
-            infos.innerHTML = `<h6 class="contrat-text"> Nombre de jours d'accueil : </h6>`;
+            infosHTML += `<h6 class="contrat-text"> Nombre de jours d'accueil : ${nbJAccueil}</h6>`;
 
             //Calcul indemnité d'entretien
             let entretien = 0;
             if(nbJAccueil>8)
-                entretien = 3.69*nbJAccueil;
+                entretien = (3.69*nbJAccueil).toFixed(2);
             else
-                entretien = 2.65*nbJAccueil;
-            infos.innerHTML = `<h6 class="contrat-text"> Indemnité d'entretien : ${entretien} €</h6>`;
+                entretien = (2.65*nbJAccueil).toFixed(2);
+            infosHTML += `<h6 class="contrat-text"> Indemnité d'entretien : ${entretien} €</h6>`;
 
             //Calcul indemnité de repas
             let repas = 0;
-            infos.innerHTML = `<h6 class="contrat-text"> Indemnité de repas : ${repas} €</h6>`;
+            infosHTML += `<h6 class="contrat-text"> Indemnité de repas : ${repas} €</h6>`;
 
             //Calcul heures normales
             let heuresNormales = 0;
-            infos.innerHTML = `<h6 class="contrat-text"> Nombre d'heures normales : ${heuresNormales} €</h6>`;
+            infosHTML += `<h6 class="contrat-text"> Nombre d'heures normales : ${heuresNormales} €</h6>`;
 
-            //Calcul heures normales
+            //Calcul jours d'activité
             let jActivite = 0;
-            infos.innerHTML = `<h6 class="contrat-text"> Nombre de jours d'activité : ${jActivite} €</h6>`;
+            infosHTML += `<h6 class="contrat-text"> Nombre de jours d'activité : ${jActivite} €</h6>`;
 
             //Salaire net
             let salaireNet = 0;
-            infos.innerHTML = `<h6 class="contrat-text"> Salaire net : ${salaireNet} €</h6>`;
+            infosHTML += `<h6 class="contrat-text"> Salaire net : ${salaireNet} €</h6>`;
 
             //Montant net
             let montantNet = 0;
-            infos.innerHTML = `<h6 class="contrat-text"> Salaire net : ${montantNet} €</h6>`;
+            infosHTML += `<h6 class="contrat-text"> Salaire net : ${montantNet} €</h6>`;
 
+            infos.innerHTML = infosHTML;
 
         </script>
 

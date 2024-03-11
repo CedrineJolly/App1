@@ -42,4 +42,3 @@ export const deleteContrat = () => {
         return false; // La suppression a échoué
     }
 }
-

@@ -6,11 +6,11 @@ document.addEventListener("DOMContentLoaded", function() {
   // Récupérer l'id du dernier contrat créé
   const idContrat = window.bridge.getTheContrat();
 
-  // Si l'id de contrat est disponible, ajouter un click sur le bouton suppression supprime le contrat
+  // Si l'id de contrat est disponible, cliquer sur le bouton suppression supprime le contrat
   if (idContrat) {
     const deleteButton = document.getElementById('deleteContrat');
     deleteButton.addEventListener('click', function() {
-      deleteContrat(idContrat);
+      deleteContrat();
     });
   }
 });

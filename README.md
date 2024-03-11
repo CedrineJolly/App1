@@ -34,7 +34,7 @@ La base sqlite est utilisée pour ce projet.
 Le fichier de base de données est le fichier `database.db`.
 Ce fichier contient uniquement le modèle de données.
 
-Pour visualiser les données, utiliser un outils comme `DBeaver`.
+Pour visualiser les données, utiliser un outil comme `DBeaver`.
 
 # Packager le projet
 
@@ -46,7 +46,7 @@ Objectif : obtenir un icône exécutable directement sur le desktop.
 
 ## Models
 
-TODO expliquer le role de ce que contient ce répertoire
+Fichiers de connexion avec la base de données et gestion des requêtes SQL pour chaque table de la base de données.
 
 ## Renderer
 
@@ -54,5 +54,9 @@ TODO expliquer le role de ce que contient ce répertoire
 
 ## Pages
 
-TODO expliquer le role de ce que contient ce répertoire
-Utilisation du framework css bootstrap ?
+Pages HTML architecture de l'application
+
+## Bootstrap
+Lien du framework bootstrap utilisé pour le design de l'application :
+https://startbootstrap.com/previews/freelancer
+

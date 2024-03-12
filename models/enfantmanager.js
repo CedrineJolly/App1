@@ -20,3 +20,17 @@ export const getEnfant = () =>
     let res = statement.all();
     return res;
 }
+
+//Sélectionne un profil enfant enregistré avec son id donné
+export const getInfoEnfant = () => {
+    
+    // Code pour les infos d'un seul enfant 
+    /*const sql = "SELECT * FROM Enfant WHERE IdEnfant = ?";
+    let statement = db.prepare(sql);
+    let res = statement.all(idEnfant);
+    return res;*/
+    const sql = "SELECT * FROM Enfant";
+    let statement = db.prepare(sql);
+    let res = statement.all();
+    return res;
+}

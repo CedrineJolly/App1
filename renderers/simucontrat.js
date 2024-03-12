@@ -7,7 +7,7 @@ export const SimuContrats = () => {
   const listeData = document.getElementById('contratSimu')
   const derniercontrat = window.bridge.getTheContrat();
   console.log(derniercontrat)
-  // create html string
+  // Création html string
   const contratsItems = derniercontrat.reduce((html, contrat) => {
     //Récupération des données remplies dans le formulaire
     const TpsTot =  parseFloat(contrat.TpsLun) +  parseFloat(contrat.TpsMar) +  parseFloat(contrat.TpsMer) +  parseFloat(contrat.TpsJeu) +  parseFloat(contrat.TpsVen);

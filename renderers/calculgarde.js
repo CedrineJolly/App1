@@ -1,25 +1,83 @@
 /*
  * Calcule le temps de garde par jour avec les données précédentes
+*/
 
-function enableInput(element) {
-        element.removeAttribute("readonly");
-        element.focus();
-    }
+export function GestionTable()
+{
+    // Récupérer la référence du tableau
+                const table = document.querySelector('.table');
+                let dateDuJour = "";
 
-    function calculateGarde() {
-        const heureArrivee = document.getElementById('hArriv').value;
-        const heureDepart = document.getElementById('hDepart').value;
+                // Créer un tableau pour stocker les résultats
+                //const results = [];
 
-        // Vérifier si les deux champs sont remplis
-        if (heureArrivee && heureDepart) {
-            // Conversion en nombre pour effectuer le calcul
-            const heureArriveeNumber = parseFloat(heureArrivee);
-            const heureDepartNumber = parseFloat(heureDepart);
+                // Créer 31 lignes au tableau
+                for (let i = 1; i <= 31; i++) {
+                    const row = document.createElement('tr'); // Créer une nouvelle ligne
+                    row.classList.add('row'); // Ajouter la class "row"
 
-            // Calcul du temps de garde
-            const NbHeuresJour = heureDepartNumber - heureArriveeNumber;
+                    // Ajouter les cellules à la ligne
+                    row.innerHTML = `
+                        <td class="col"><div class="form-floating mb-1">${i}</div></td>
+                        <td class="col"><input type="text" class="form-control hArriv" oninput="calculateGarde(this)" onclick="enableInput(this)"></td>
+                        <td class="col"><input type="text" class="form-control hDepart" oninput="calculateGarde(this)" onclick="enableInput(this)"></td>
+                        <td class="col"><div class="form-floating mb-1 gardeResult"></div></td>
+                    `;
 
-            // Mise à jour de l'affichage du résultat
-            document.getElementById('gardeResult').innerHTML = `<h6 class="contrat-text">${NbHeuresJour}</h6>`;
-        }
-    }*/
+                    dateDuJour = `${i}/02/2024`;
+
+                    // Ajouter la ligne au tableau
+                    table.appendChild(row);
+                }
+
+                //Activation de l'édition des champs
+                function enableInput(element) {
+                    element.removeAttribute("readonly");
+                    element.focus();
+                }
+
+                // Créer un objet pour stocker les résultats
+                const results = {};
+
+                // Calcul du temps de garde
+                function calculateGarde(element) {
+                    const row = element.closest('tr');
+                    const dayNumber = row.querySelector('.col:first-child').textContent;
+                    const heureArrivee = row.querySelector('.hArriv').value;
+                    const heureDepart = row.querySelector('.hDepart').value;
+                    const gardeResult = row.querySelector('.gardeResult');
+
+                    // Vérifier si les deux champs sont remplis
+                    if (heureArrivee && heureDepart) {
+                        // Conversion en nombre pour effectuer le calcul
+                        const heureArriveeNumber = parseFloat(heureArrivee);
+                        const heureDepartNumber = parseFloat(heureDepart);
+
+                        // Calcul du temps de garde
+                        const nbHeuresJour = heureDepartNumber - heureArriveeNumber;
+
+                        // Mise à jour de l'affichage du résultat
+                        gardeResult.innerHTML = `<h6 class="contrat-text">${nbHeuresJour}</h6>`;
+
+                        // Ajouter le résultat à l'objet des résultats
+                        results[dayNumber] = nbHeuresJour;
+
+                        // Mettre à jour le total
+                        updateTotal();
+                    }
+                }
+
+                function updateTotal() {
+                    let total = 0;
+                    for (let day in results) {
+                        if (results.hasOwnProperty(day)) {
+                            total += results[day];
+                        }
+                    }
+                    totalHeures = total;
+                    const totalCell = document.querySelector('.total-cell');
+                    totalCell.innerHTML = `<h6 class="contrat-text">${totalHeures} Heures</h6>`;
+                }
+}
+
+GestionTable()

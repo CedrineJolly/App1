@@ -72,7 +72,8 @@
                 </tr>
             </table>
 
-            <script> 
+            <script src="../renderers/calculgarde.js" type="module"></script>
+            <!--script> 
                 // Récupérer la référence du tableau
                 const table = document.querySelector('.table');
                 let dateDuJour = "";
@@ -147,7 +148,7 @@
                     const totalCell = document.querySelector('.total-cell');
                     totalCell.innerHTML = `<h6 class="contrat-text">${totalHeures} Heures</h6>`;
                 }
-            </script>
+            </script -->
 
             <table class="table">
                 <tr class="row">
@@ -168,7 +169,8 @@
     <section>
         <h4 class="page-section-heading text-center text-uppercase text-secondary mb-5 mt-4">TOTAL</h4>
         <div id="infosCAF"></div>
-        <script>
+        <script src="../renderers/calculCAF.js" type="module"></script>
+        <!--script>
             
             const infos = document.getElementById('infosCAF');
             infosHTML = '';
@@ -207,15 +209,13 @@
 
             infos.innerHTML = infosHTML;
 
-        </script>
-
+        </script-->
 
     </section>
     </div>
     </div>
 
     
-    <!--script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script-->
     <p>
 
     </p>

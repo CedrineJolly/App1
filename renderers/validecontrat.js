@@ -48,7 +48,51 @@ document.getElementById('submitEnfant').addEventListener('click', async (evt) =>
                         <div class="divider-custom-line"></div>
                     </div>
                 </header>
-                <h6 class="contrat-text">  </h6>
+
+                <script src="../renderers/addgarde.js" type="module"></script>
+                <section>
+                    <div>
+                        <h4 class="page-section-heading text-center text-uppercase text-secondary mb-5 mt-5">Planning Février</h4>
+                        <p>
+
+                        </p>
+                    </div>
+                    <div class="row justify-content-center">
+                    <div class="col-lg-8 col-xl-7">
+                        <table class="table">
+                            <tr class="row">
+                                <td class="col"><div class="form-floating mb-2"><h6>Jour</h6></div></td>
+                                <td class="col"><div class="form-floating mb-2"><h6>Heure Arrivée</h6></div></td>
+                                <td class="col"><div class="form-floating mb-2"><h6>Heure Départ</h6></div></td>
+                                <td class="col"><div class="form-floating mb-2"><h6>Temps</h6></div></td>
+                            </tr>
+                        </table>
+
+                        <script src="../renderers/calculgarde.js" type="module"></script>
+
+                        <table class="table">
+                        <tr class="row">
+                            <td class="col"><div class="form-floating mb-2"><h6>TOTAL</h6></div></td>
+                            <td class="col"><div class="form-floating mb-2"></div></td>
+                            <td class="col"><div class="form-floating mb-2"></div></td>
+                            <td class="col total-cell"><div class="form-floating mb-2"></div></td>
+                        </tr>
+                        </table>
+
+                    </div>
+                    </div>
+                </section>
+
+                <div class="row justify-content-center">
+                <div class="col-lg-8 col-xl-7">
+                    <section>
+                        <h4 class="page-section-heading text-center text-uppercase text-secondary mb-5 mt-4">TOTAL</h4>
+                        <div id="infosCAF"></div>
+                        <script src="../renderers/calculCAF.js" type="module"></script>
+                    </section>
+                </div>
+                </div>
+
                 <footer>
                     <div class="copyright py-4 text-center text-white">
                         <div class="container"><small>Copyright &copy; ENSC - Projet Informatique Individuel </small></div>
@@ -75,6 +119,7 @@ document.getElementById('submitEnfant').addEventListener('click', async (evt) =>
         console.error(error);
     }
 });
+
 
 /*
 //ESSAI de code pour enregistrer automatiquement

@@ -18,7 +18,9 @@ npm run rebuild
 
 puis exécuter les commandes suivantes
 
+```
 npm run start
+```
 
 # Debug du projet
 

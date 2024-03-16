@@ -53,7 +53,7 @@ Objectif : obtenir un icône exécutable directement sur le desktop.
 
 ## Renderer
 
-Chaque fichier de ce répertoire est un script js qui permet de réaliser les fonctionnalités souhaités.
+Chaque fichier de ce répertoire est un script js qui permet de réaliser les fonctionnalitées souhaités.
 Les pages HTML de l'application font appel à ses fichiers lorsque l'action doit être réalisée.
 
 ## Pages

@@ -22,8 +22,8 @@ export const getTheContrat = () =>
 export const createContrat = (contratData) =>
 {
     console.log(contratData);
-    const stmt = db.prepare('INSERT INTO Contrat (Type, TarifHoraire, NbSemaines, TpsLun, TpsMar, TpsMer, TpsJeu, TpsVen, AideCaf) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)');
-    const info = stmt.run(contratData.type, contratData.tarifHoraire, contratData.nbSemaines, contratData.heuresLundi, contratData.heuresMardi, contratData.heuresMercredi, contratData.heuresJeudi, contratData.heuresVendredi, contratData.aideCaf);
+    const stmt = db.prepare('INSERT INTO Contrat (Type, TarifHoraire, NbSemaines, TpsLun, TpsMar, TpsMer, TpsJeu, TpsVen, AideCaf, Etat) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
+    const info = stmt.run(contratData.type, contratData.tarifHoraire, contratData.nbSemaines, contratData.heuresLundi, contratData.heuresMardi, contratData.heuresMercredi, contratData.heuresJeudi, contratData.heuresVendredi, contratData.aideCaf, contratData.etat);
     if(info.changes == 1) {
         return info.lastInsertRowid
     }
@@ -42,3 +42,20 @@ export const deleteContrat = () => {
         return false; // La suppression a échoué
     }
 }
+
+export const updateEtatContrat = (idEnfant, nouvelEtat) => {
+    console.log(idEnfant, nouvelEtat);
+    // Récupération de l'id contrat associé à l'enfant
+    const contratInfo = db.prepare('SELECT Contrat.IdContrat FROM Contrat INNER JOIN Enfant ON Contrat.IdContrat = Enfant.IdContrat WHERE Enfant.IdEnfant = ?').get(idEnfant);
+    if (!contratInfo) {
+        throw new Error('Aucun contrat trouvé pour cet enfant');
+    }
+
+    // Mise à jour de l'état du contrat
+    const stmt = db.prepare('UPDATE Contrat SET Etat = ? WHERE IdContrat = ?');
+    const info = stmt.run(nouvelEtat, contratInfo.IdContrat);
+    if (info.changes === 1) {
+        return true;
+    }
+    return false;
+};

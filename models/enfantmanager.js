@@ -22,15 +22,29 @@ export const getEnfant = () =>
 }
 
 //Sélectionne un profil enfant enregistré avec son id donné
-export const getInfoEnfant = () => {
+export const getInfoEnfant = (etatContrat) => {
     
-    // Code pour les infos d'un seul enfant 
+    // V1 - Code pour les infos d'un seul enfant 
     /*const sql = "SELECT * FROM Enfant WHERE IdEnfant = ?";
     let statement = db.prepare(sql);
     let res = statement.all(idEnfant);
-    return res;*/
-    const sql = "SELECT * FROM Enfant";
+    return res; */
+
+    // V2 - Code pour tous les enfants 
+    /* const sql = "SELECT * FROM Enfant";
     let statement = db.prepare(sql);
     let res = statement.all();
+    return res; */
+
+    // Vfinale - Code selon l'etat du contrat
+    const sql = `
+        SELECT Enfant.*
+        FROM Enfant
+        INNER JOIN Contrat ON Enfant.IdContrat = Contrat.IdContrat
+        WHERE Contrat.Etat = ?
+    `;
+    const statement = db.prepare(sql);
+    const res = statement.all(etatContrat);
     return res;
+
 }

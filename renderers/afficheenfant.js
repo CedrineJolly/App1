@@ -2,10 +2,10 @@
  * Affiche le raccourci vers la page Enfant quand elle est créée
 */
 
-export const AfficheEnfant = (cheminImg, cheminPage) => {
+export const AfficheEnfant = (cheminImg, cheminPage, etatContrat) => {
   // On récupère 
   const listeData = document.getElementById('profilEnfant')
-  const profilenfant = window.bridge.getInfoEnfant();
+  const profilenfant = window.bridge.getInfoEnfant(etatContrat);
   console.log(profilenfant)
 
   const enfantItems = profilenfant.reduce((html, enfant) => {
@@ -33,4 +33,4 @@ export const AfficheEnfant = (cheminImg, cheminPage) => {
   listeData.innerHTML = enfantItems
 }
 
-AfficheEnfant(cheminImg, cheminPage)
+AfficheEnfant(cheminImg, cheminPage, etatContrat)

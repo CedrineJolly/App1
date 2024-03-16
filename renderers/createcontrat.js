@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   if (aideCaf === '') {
-      document.getElementById('caf').value = '319.07'; // Valeur par défaut ptranche 2 pour la CAF
+      document.getElementById('caf').value = '319.07'; // Valeur par défaut tranche 2 pour la CAF
   }
 });
 
@@ -64,6 +64,13 @@ document.getElementById('contratForm').addEventListener('submit', (evt) => {
 
   const aideCaf = document.getElementById('caf').value;
 
+  /*Etat du contrat : 
+    0 : simulation créée mais contrat non validé
+    1 : contrat validé en cours de garde
+    2 : contrat terminé, archivé
+  */
+  const etat = 0;
+
   const idContrat = window.bridge.createContrat({
     type: type,
     tarifHoraire: tarifHoraire,
@@ -73,7 +80,8 @@ document.getElementById('contratForm').addEventListener('submit', (evt) => {
     heuresMercredi: heuresMercredi,
     heuresJeudi: heuresJeudi,
     heuresVendredi: heuresVendredi,
-    aideCaf: aideCaf
+    aideCaf: aideCaf,
+    etat: etat
   })
   if(idContrat > 0) {
     const idEnfant = window.bridge.createEnfant({

@@ -1,5 +1,5 @@
 import { contextBridge } from 'electron';
-import { getContrats, createContrat, getTheContrat, deleteContrat } from './models/contratsmanager.js';
+import { getContrats, createContrat, getTheContrat, deleteContrat, updateEtatContrat } from './models/contratsmanager.js';
 import { createEnfant, getEnfant, getInfoEnfant } from './models/enfantmanager.js';
 import { putGarde } from './models/gardemanager.js';
 
@@ -25,6 +25,7 @@ contextBridge.exposeInMainWorld("bridge", {
     getTheContrat: getTheContrat,
     createContrat: createContrat,
     deleteContrat: deleteContrat,
+    updateEtatContrat: updateEtatContrat,
     createEnfant: createEnfant,
     getEnfant: getEnfant,
     getInfoEnfant: getInfoEnfant,

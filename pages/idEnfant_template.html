@@ -158,6 +158,10 @@
                     <td class="col total-cell"><div class="form-floating mb-2"></div></td>
                 </tr>
             </table>
+            <script src="../renderers/enregistrer.js" type="module"></script>
+            <div class="d-grid">
+                <button class="btn btn-primary btn-lg mt-4 mb-3" id="saveEnfant" type="submit">Enregistrer</button>
+            </div>
 
         </div>
         </div>
@@ -211,6 +215,30 @@
 
         </script-->
 
+    </section>
+    </div>
+    </div>
+
+    <!-- Archivage Enfant -->
+    <div class="row justify-content-center">
+    <div class="col-lg-8 col-xl-7">
+    <section>
+        
+        <div class="d-grid">
+            <button class="btn btn-dark btn-lg mt-4 mb-3" id="archiveEnfant" type="submit">Archiver</button>
+        </div>
+        <script>
+        document.getElementById('archiveEnfant').addEventListener('click', async (evt) => {
+            evt.preventDefault();
+            try {
+                const numeroPage = parseInt(window.location.pathname.match(/(\d+)\.html/)[1]);
+                window.bridge.updateEtatContrat(numeroPage, 2);
+            }
+            catch (error) {
+                console.error(error);
+            }
+        });
+        </script>
     </section>
     </div>
     </div>

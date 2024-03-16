@@ -48,15 +48,17 @@ Objectif : obtenir un icône exécutable directement sur le desktop.
 
 ## Models
 
-Fichiers de connexion avec la base de données et gestion des requêtes SQL pour chaque table de la base de données.
+- "dbmanager.js" Fichier de connexion avec la base de données
+- "xxxmanager.js" Fichiers de gestion des requêtes SQL pour chaque table de la base de données.
 
 ## Renderer
 
-TODO expliquer le role de ce que contient ce répertoire
+Chaque fichier de ce répertoire est un script js qui permet de réaliser les fonctionnalités souhaités.
+Les pages HTML de l'application font appel à ses fichiers lorsque l'action doit être réalisée.
 
 ## Pages
 
-Pages HTML architecture de l'application
+Pages HTML de l'application.
 
 ## Bootstrap
 Lien du framework bootstrap utilisé pour le design de l'application :

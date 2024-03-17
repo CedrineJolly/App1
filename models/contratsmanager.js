@@ -1,4 +1,5 @@
 import { db } from './dbmanager.js';
+import { deleteEnfantsFromIdContrat } from './enfantmanager.js'
 
 //test pour obtenir toutes les infos de la classe Contrat de la bdd
 export const getContrats = () =>
@@ -10,11 +11,11 @@ export const getContrats = () =>
 }
 
 //Sélectionne le dernier contrat créé avec son id
-export const getTheContrat = () =>
+export const getTheContrat = (idContrat) =>
 {
-    const sql = "SELECT * from Contrat WHERE IdContrat = (SELECT MAX(IdContrat) FROM Contrat)";
+    const sql = "SELECT * from Contrat WHERE IdContrat = ?";
     let statement = db.prepare(sql);
-    let res = statement.all();
+    let res = statement.get(idContrat);
     return res;
 }
 
@@ -31,14 +32,21 @@ export const createContrat = (contratData) =>
 }
 
 //suppression d'un contrat de la base de données en fonction de son id
-export const deleteContrat = () => {
-    const stmt = db.prepare('DELETE FROM Contrat WHERE IdContrat = (SELECT MAX(IdContrat) FROM Contrat)');
-    const info = stmt.run();
-    if (info.changes === 1) {
-        console.log('Le contrat a été supprimé avec succès.');
-        return true; // La suppression a réussi
+export const deleteContrat = (idContrat) => {
+    console.log(`Suppression du contrat ${idContrat}`);
+    const deleteInfos = deleteEnfantsFromIdContrat(idContrat)
+    if(deleteInfos.changes > 0) {
+        const stmtDeleteContrat = db.prepare('DELETE FROM Contrat WHERE IdContrat = ?');
+        const info = stmtDeleteContrat.run(idContrat);
+        if (info.changes === 1) {
+            console.log(`Le contrat ${idContrat} a été supprimé avec succès.`);
+            return true; // La suppression a réussi
+        } else {
+            console.log(`Erreur lors de la suppression du contrat ${idContrat}`);
+            return false; // La suppression a échoué
+        }
     } else {
-        console.log('Erreur lors de la suppression du contrat.');
-        return false; // La suppression a échoué
+        console.log(`Erreur lors de la suppression des enfants liés au contrat ${idContrat}`);
+        return false;
     }
 }

@@ -86,15 +86,15 @@ document.getElementById('contratForm').addEventListener('submit', (evt) => {
   }
 
   // Sauvegarde la position actuelle de la fenêtre
-  const scrollPosition = window.scrollY;
+  //const scrollPosition = window.scrollY;
 
   // Appelle la fonction pour afficher la simulation
-  SimuContrats();
+  SimuContrats(idContrat);
 
   // Rafraîchit la page
-  location.reload();
+  //location.reload();
 
   // Rétablit la position de la fenêtre après le rechargement
-  window.scrollTo(0, scrollPosition);
+  //window.scrollTo(0, scrollPosition);
 
 })

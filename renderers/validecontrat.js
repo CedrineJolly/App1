@@ -8,8 +8,9 @@ document.getElementById('submitEnfant').addEventListener('click', async (evt) =>
 
     try {
         // On récupère les données de la bdd 
-        const dernierEnfant = await window.bridge.getEnfant();
-        console.log(dernierEnfant);
+        const idContrat = document.getElementById('idContrat').value;
+        const enfantContrat = await window.bridge.getEnfantByIdContrat(idContrat);
+        console.log(enfantContrat);
 
         // Création du contenu HTML
         const nouvellePageHTML = `
@@ -41,7 +42,7 @@ document.getElementById('submitEnfant').addEventListener('click', async (evt) =>
                     </div>
                 </nav>
                 <header class="masthead bg-secondary text-white text-center">
-                    <h2>${dernierEnfant[0].Prenom} ${dernierEnfant[0].Nom}</h2>
+                    <h2>${enfantContrat.Prenom} ${enfantContrat.Nom}</h2>
                     <div class="divider-custom divider-light">
                         <div class="divider-custom-line"></div>
                         <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
@@ -125,7 +126,7 @@ document.getElementById('submitEnfant').addEventListener('click', async (evt) =>
         // Création d'un lien de téléchargement
         const link = document.createElement('a');
         link.href = URL.createObjectURL(blob);
-        link.download = `idEnfant${dernierEnfant[0].IdEnfant}.html`;
+        link.download = `idEnfant${enfantContrat.IdEnfant}.html`;
 
         // Clique sur le lien pour démarrer le téléchargement
         link.click();

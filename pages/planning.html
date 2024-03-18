@@ -40,10 +40,24 @@
         </div>
     </nav>
 
+    <script  src="../renderers/planning.js" type="module"></script>
+    <script>
+        // Récupérer les paramètres d'URL
+        const urlParams = new URLSearchParams(window.location.search);
+        // Récupérer la valeur de l'idEnfant depuis les paramètres d'URL
+        let idEnfant = urlParams.get('idEnfant');
+        console.log(idEnfant);
+        // Appeler la fonction AfficheNom une fois que le fichier planning.js est chargé
+        window.onload = function() {
+            AfficheNom(idEnfant);
+        };
+    </script>
+    
+
     <header class="masthead bg-secondary text-white text-center">
         <!--Avatar Enfant-->
         <!--img class="masthead-avatar mb-5" src="../assets/img/portfolio/cabin.png" alt="Avatar" /-->
-        <h2>Prénom et Nom de l'enfant</h2>
+        <h2 id="nom&prenom"></h2>
             <!-- Icon Divider-->
             <div class="divider-custom divider-light">
                 <div class="divider-custom-line"></div>
@@ -72,8 +86,7 @@
                 </tr>
             </table>
 
-            <script src="../renderers/calculgarde.js" type="module"></script>
-            <!--script> 
+            <script> 
                 // Récupérer la référence du tableau
                 const table = document.querySelector('.table');
                 let dateDuJour = "";
@@ -148,7 +161,7 @@
                     const totalCell = document.querySelector('.total-cell');
                     totalCell.innerHTML = `<h6 class="contrat-text">${totalHeures} Heures</h6>`;
                 }
-            </script -->
+            </script>
 
             <table class="table">
                 <tr class="row">
@@ -228,16 +241,15 @@
             <button class="btn btn-dark btn-lg mt-4 mb-3" id="archiveEnfant" type="submit">Archiver</button>
         </div>
         <script>
-        document.getElementById('archiveEnfant').addEventListener('click', async (evt) => {
-            evt.preventDefault();
-            try {
-                const numeroPage = parseInt(window.location.pathname.match(/(\d+)\.html/)[1]);
-                window.bridge.updateEtatContrat(numeroPage, 2);
-            }
-            catch (error) {
-                console.error(error);
-            }
-        });
+        // Récupérer les paramètres d'URL
+        const urlParams2 = new URLSearchParams(window.location.search);
+        // Récupérer la valeur de l'idEnfant depuis les paramètres d'URL
+        let idEnfant2 = urlParams2.get('idEnfant');
+        console.log(idEnfant2);
+        // Appeler la fonction AfficheNom une fois que le fichier planning.js est chargé
+        window.onload = function() {
+            AfficheNom(idEnfant2);
+        };
         </script>
     </section>
     </div>

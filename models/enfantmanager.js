@@ -32,7 +32,7 @@ export const deleteEnfantsFromIdContrat = (idContrat) =>
     return info;
 }
 
-//Retourne l enfant selon son id
+//Retourne l'enfant selon son id
 export const getEnfant = (idEnfant) =>
 {
     const sql = "SELECT * from Enfant WHERE IdEnfant = ?";
@@ -41,7 +41,7 @@ export const getEnfant = (idEnfant) =>
     return res;
 }
 
-//Retourne l enfant lié a l'id de contrat
+//Retourne l'enfant lié à l'id de son contrat
 export const getEnfantByIdContrat = (idContrat) =>
 {
     const sql = "SELECT * from Enfant WHERE idContrat = ?";

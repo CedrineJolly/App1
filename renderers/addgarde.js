@@ -5,6 +5,7 @@
 //Lorsque la case du tableau est remplie, enregistrement
 
 // changer la réception par form
+// à faire pour enregistrer en bdd
 document.getElementById('contratForm').addEventListener('submit', (evt) => {
 
 })

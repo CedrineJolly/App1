@@ -67,7 +67,6 @@
     </header>
 
     <!-- Visualisation planning de l'enfant -->
-    <script src="../renderers/addgarde.js" type="module"></script>
     <section>
         <div>
             <h4 class="page-section-heading text-center text-uppercase text-secondary mb-5 mt-5">Planning Février</h4>
@@ -133,11 +132,11 @@
                     // Vérifier si les deux champs sont remplis
                     if (heureArrivee && heureDepart) {
                         // Conversion en nombre pour effectuer le calcul
-                        const heureArriveeNumber = parseFloat(heureArrivee);
-                        const heureDepartNumber = parseFloat(heureDepart);
+                        const heureArriveeNb = parseFloat(heureArrivee);
+                        const heureDepartNb = parseFloat(heureDepart);
 
                         // Calcul du temps de garde
-                        const nbHeuresJour = heureDepartNumber - heureArriveeNumber;
+                        const nbHeuresJour = heureDepartNb - heureArriveeNb;
 
                         // Mise à jour de l'affichage du résultat
                         gardeResult.innerHTML = `<h6 class="contrat-text">${nbHeuresJour}</h6>`;
@@ -171,7 +170,7 @@
                     <td class="col total-cell"><div class="form-floating mb-2"></div></td>
                 </tr>
             </table>
-            <script src="../renderers/enregistrer.js" type="module"></script>
+            <script src="../renderers/addgarde.js" type="module"></script>
             <div class="d-grid">
                 <button class="btn btn-primary btn-lg mt-4 mb-3" id="saveEnfant" type="submit">Enregistrer</button>
             </div>

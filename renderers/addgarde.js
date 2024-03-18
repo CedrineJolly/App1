@@ -4,22 +4,27 @@
 
 //Lorsque la case du tableau est remplie, enregistrement
 
-// changer la réception par form
-// à faire pour enregistrer en bdd
-document.getElementById('contratForm').addEventListener('submit', (evt) => {
+document.getElementById('saveEnfant').addEventListener('click', async (evt) => {
+  evt.preventDefault();
 
-})
+    try {
+      let date = dateDuJour;
+      let nbHeures = totalHeures;
+      let hArriv = heureArriveeNb;
+      let hDepart = heureDepartNb;
 
-  const date = dateDuJour;
-  const nbHeures = totalHeures;
+      if(idEnfant > 0) {
+        const idGarde = window.bridge.putGarde({
+          date: date,
+          nbHeures: nbHeures,
+          idEnfant: idEnfant,
+          hDepart: hArriv,
+          hDepart: hDepart
 
-  if(idEnfant > 0) {
-    const idGarde = window.bridge.putGarde({
-      date: date,
-      nbHeures: nbHeures,
-      idEnfant: idEnfant
-    })}
 
-  else {
-    console.log('Erreur lors de la création du contrat.')
-  }
+        })}
+    }
+    catch (error) {
+        console.error(error);
+    }
+});

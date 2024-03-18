@@ -50,12 +50,12 @@ export function GestionTable()
                     // Vérifier si les deux champs sont remplis
                     if (heureArrivee && heureDepart) {
                         // Conversion en nombre pour effectuer le calcul
-                        const heureArriveeNumber = parseFloat(heureArrivee);
-                        const heureDepartNumber = parseFloat(heureDepart);
+                        const heureArriveeNb = parseFloat(heureArrivee);
+                        const heureDepartNb = parseFloat(heureDepart);
 
                         // Calcul du temps de garde
-                        const nbHeuresJour = heureDepartNumber - heureArriveeNumber;
-
+                        const nbHeuresJour = heureDepartNb - heureArriveeNb;
+                        
                         // Mise à jour de l'affichage du résultat
                         gardeResult.innerHTML = `<h6 class="contrat-text">${nbHeuresJour}</h6>`;
 

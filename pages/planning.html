@@ -55,10 +55,7 @@
     
 
     <header class="masthead bg-secondary text-white text-center">
-        <!--Avatar Enfant-->
-        <!--img class="masthead-avatar mb-5" src="../assets/img/portfolio/cabin.png" alt="Avatar" /-->
         <h2 id="nom&prenom"></h2>
-            <!-- Icon Divider-->
             <div class="divider-custom divider-light">
                 <div class="divider-custom-line"></div>
                 <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
@@ -85,83 +82,6 @@
                 </tr>
             </table>
 
-            <script> 
-                // Récupérer la référence du tableau
-                const table = document.querySelector('.table');
-                let dateDuJour = "";
-
-                // Créer un tableau pour stocker les résultats
-                //const results = [];
-
-                // Créer 31 lignes au tableau
-                for (let i = 1; i <= 31; i++) {
-                    const row = document.createElement('tr'); // Créer une nouvelle ligne
-                    row.classList.add('row'); // Ajouter la class "row"
-
-                    // Ajouter les cellules à la ligne
-                    row.innerHTML = `
-                        <td class="col"><div class="form-floating mb-1">${i}</div></td>
-                        <td class="col"><input type="text" class="form-control hArriv" oninput="calculateGarde(this)" onclick="enableInput(this)"></td>
-                        <td class="col"><input type="text" class="form-control hDepart" oninput="calculateGarde(this)" onclick="enableInput(this)"></td>
-                        <td class="col"><div class="form-floating mb-1 gardeResult"></div></td>
-                    `;
-
-                    dateDuJour = `${i}/02/2024`;
-
-                    // Ajouter la ligne au tableau
-                    table.appendChild(row);
-                }
-
-                //Activation de l'édition des champs
-                function enableInput(element) {
-                    element.removeAttribute("readonly");
-                    element.focus();
-                }
-
-                // Créer un objet pour stocker les résultats
-                const results = {};
-
-                // Calcul du temps de garde
-                function calculateGarde(element) {
-                    const row = element.closest('tr');
-                    const dayNumber = row.querySelector('.col:first-child').textContent;
-                    const heureArrivee = row.querySelector('.hArriv').value;
-                    const heureDepart = row.querySelector('.hDepart').value;
-                    const gardeResult = row.querySelector('.gardeResult');
-
-                    // Vérifier si les deux champs sont remplis
-                    if (heureArrivee && heureDepart) {
-                        // Conversion en nombre pour effectuer le calcul
-                        const heureArriveeNb = parseFloat(heureArrivee);
-                        const heureDepartNb = parseFloat(heureDepart);
-
-                        // Calcul du temps de garde
-                        const nbHeuresJour = heureDepartNb - heureArriveeNb;
-
-                        // Mise à jour de l'affichage du résultat
-                        gardeResult.innerHTML = `<h6 class="contrat-text">${nbHeuresJour}</h6>`;
-
-                        // Ajouter le résultat à l'objet des résultats
-                        results[dayNumber] = nbHeuresJour;
-
-                        // Mettre à jour le total
-                        updateTotal();
-                    }
-                }
-
-                function updateTotal() {
-                    let total = 0;
-                    for (let day in results) {
-                        if (results.hasOwnProperty(day)) {
-                            total += results[day];
-                        }
-                    }
-                    totalHeures = total;
-                    const totalCell = document.querySelector('.total-cell');
-                    totalCell.innerHTML = `<h6 class="contrat-text">${totalHeures} Heures</h6>`;
-                }
-            </script>
-
             <table class="table">
                 <tr class="row">
                     <td class="col"><div class="form-floating mb-2"><h6>TOTAL</h6></div></td>
@@ -170,10 +90,120 @@
                     <td class="col total-cell"><div class="form-floating mb-2"></div></td>
                 </tr>
             </table>
-            <script src="../renderers/addgarde.js" type="module"></script>
+            <!--script src="../renderers/addgarde.js" type="module"></script-->
             <div class="d-grid">
                 <button class="btn btn-primary btn-lg mt-4 mb-3" id="saveEnfant" type="submit">Enregistrer</button>
             </div>
+
+            <script> 
+    // Récupérer la référence du tableau
+    const table = document.querySelector('.table');
+    let dateDuJour = "";
+
+    // Créer un objet pour stocker les résultats
+    const results = {};
+
+    // Créer 31 lignes au tableau
+    for (let i = 1; i <= 31; i++) {
+        const row = document.createElement('tr'); // Créer une nouvelle ligne de tableau
+        row.classList.add('row'); // Ajouter la class "row"
+
+        // Ajouter les cellules à la ligne
+        row.innerHTML = `
+            <td class="col"><div class="form-floating mb-1">${i}</div></td>
+            <td class="col"><input type="text" class="form-control hArriv" oninput="calculateGarde(this)" onclick="enableInput(this)"></td>
+            <td class="col"><input type="text" class="form-control hDepart" oninput="calculateGarde(this)" onclick="enableInput(this)"></td>
+            <td class="col"><div class="form-floating mb-1 gardeResult"></div></td>
+        `;
+
+        dateDuJour = `${i}/02/2024`;
+
+        // Ajouter la ligne au tableau
+        table.appendChild(row);
+    }
+
+    //Activation de l'édition des champs
+    function enableInput(element) {
+        element.removeAttribute("readonly");
+        element.focus();
+    }
+
+    // Calcul du temps de garde
+    function calculateGarde(element) {
+        const row = element.closest('tr');
+        const dayNumber = row.querySelector('.col:first-child').textContent;
+        const heureArrivee = row.querySelector('.hArriv').value;
+        const heureDepart = row.querySelector('.hDepart').value;
+        const gardeResult = row.querySelector('.gardeResult');
+
+        // Vérifier si les deux champs sont remplis
+        if (heureArrivee !== "" && heureDepart !== "") {
+            // Conversion en nombre pour effectuer le calcul
+            const heureArriveeNb = parseFloat(heureArrivee);
+            const heureDepartNb = parseFloat(heureDepart);
+
+            // Calcul du temps de garde
+            const nbHeuresJour = heureDepartNb - heureArriveeNb;
+
+            // Mise à jour de l'affichage du résultat
+            gardeResult.innerHTML = `<h6 class="contrat-text">${nbHeuresJour}</h6>`;
+
+            // Ajouter le résultat à l'objet des résultats
+            results[dayNumber] = nbHeuresJour;
+
+            // Mettre à jour le total
+            updateTotal();
+        }
+    }
+
+    function updateTotal() {
+        let total = 0;
+        for (let day in results) {
+            if (results.hasOwnProperty(day)) {
+                total += results[day];
+            }
+        }
+        totalHeures = total;
+        const totalCell = document.querySelector('.total-cell');
+        totalCell.innerHTML = `<h6 class="contrat-text">${totalHeures} Heures</h6>`;
+    }
+
+    //Enregistrement en bdd
+    document.getElementById('saveEnfant').addEventListener('click', async (evt) => {
+        evt.preventDefault();
+
+        try {
+            let date = dateDuJour;
+            let nbHeures = totalHeures;
+
+            // Vous devez déclarer heureArriveeNb et heureDepartNb ici car ils ne sont pas accessibles en dehors de la fonction calculateGarde
+            let heureArriveeNb, heureDepartNb;
+
+            // Pour obtenir les valeurs de heureArriveeNb et heureDepartNb, vous devez les extraire de results
+            for (let day in results) {
+                if (results.hasOwnProperty(day)) {
+                    // Par exemple, si vous avez besoin des valeurs du premier jour, vous pouvez les extraire comme ceci :
+                    if (day === '1') {
+                        heureArriveeNb = parseFloat(table.querySelector(`tr:nth-child(1) .hArriv`).value);
+                        heureDepartNb = parseFloat(table.querySelector(`tr:nth-child(1) .hDepart`).value);
+                    }
+                }
+            }
+
+            if(idEnfant > 0) {
+                const idGarde = window.bridge.putGarde({
+                    date: date,
+                    nbHeures: nbHeures,
+                    idEnfant: idEnfant,
+                    hArriv: heureArriveeNb,
+                    hDepart: heureDepartNb
+                });
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    });
+</script>
 
         </div>
         </div>
@@ -186,47 +216,6 @@
         <h4 class="page-section-heading text-center text-uppercase text-secondary mb-5 mt-4">TOTAL</h4>
         <div id="infosCAF"></div>
         <script src="../renderers/calculCAF.js" type="module"></script>
-        <!--script>
-            
-            const infos = document.getElementById('infosCAF');
-            infosHTML = '';
-
-            //Si la ligne de la cellule est remplie, alors il s'agit d'un jour d'accueil
-            let nbJAccueil = 6;
-            infosHTML += `<h6 class="contrat-text"> Nombre de jours d'accueil : ${nbJAccueil}</h6>`;
-
-            //Calcul indemnité d'entretien
-            let entretien = 0;
-            if(nbJAccueil>8)
-                entretien = (3.69*nbJAccueil).toFixed(2);
-            else
-                entretien = (2.65*nbJAccueil).toFixed(2);
-            infosHTML += `<h6 class="contrat-text"> Indemnité d'entretien : ${entretien} €</h6>`;
-
-            //Calcul indemnité de repas
-            let repas = 0;
-            infosHTML += `<h6 class="contrat-text"> Indemnité de repas : ${repas} €</h6>`;
-
-            //Calcul heures normales
-            let heuresNormales = 0;
-            infosHTML += `<h6 class="contrat-text"> Nombre d'heures normales : ${heuresNormales} €</h6>`;
-
-            //Calcul jours d'activité
-            let jActivite = 0;
-            infosHTML += `<h6 class="contrat-text"> Nombre de jours d'activité : ${jActivite} €</h6>`;
-
-            //Salaire net
-            let salaireNet = 0;
-            infosHTML += `<h6 class="contrat-text"> Salaire net : ${salaireNet} €</h6>`;
-
-            //Montant net
-            let montantNet = 0;
-            infosHTML += `<h6 class="contrat-text"> Salaire net : ${montantNet} €</h6>`;
-
-            infos.innerHTML = infosHTML;
-
-        </script-->
-
     </section>
     </div>
     </div>

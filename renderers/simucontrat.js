@@ -42,6 +42,7 @@ export const SimuContrats = (idContrat) => {
   html += `<p></p> <h6 class="contrat-text"> Vous avez le droit à ${MontantAide} € d'aide de la CAF </h6>`
   SalaireCAF = (Salaire - MontantAide).toFixed(2);
   html += `<h6 class="contrat-text"> Salaire restant à payer après déduction : ${SalaireCAF} € </h6>`
+  //Ajout ligne cachée pour connaître l'idContrat et l'utiliser par la suite
   html += `<input type="hidden" id="idContrat" value="${idContrat}" />`
   
   console.log(html)

@@ -2,7 +2,7 @@
  * Ajout d'un temps de garde selon la date dans la bdd
  */
 
-//Lorsque la case du tableau est remplie, enregistrement
+/*Lorsque la case du tableau est remplie, enregistrement
 
 document.getElementById('saveEnfant').addEventListener('click', async (evt) => {
   evt.preventDefault();
@@ -18,13 +18,11 @@ document.getElementById('saveEnfant').addEventListener('click', async (evt) => {
           date: date,
           nbHeures: nbHeures,
           idEnfant: idEnfant,
-          hDepart: hArriv,
+          hArriv: hArriv,
           hDepart: hDepart
-
-
         })}
     }
     catch (error) {
         console.error(error);
     }
-});
+}); */

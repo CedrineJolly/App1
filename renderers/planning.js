@@ -17,7 +17,7 @@ window.AfficheNom = (idEnfant) => {
 };
 
 
-//Archivage
+//Archivage du profil enfant
 window.ArchiveEnfant = async (idEnfant) => {
     try {
       window.bridge.updateEtatContrat(idEnfant, 2);

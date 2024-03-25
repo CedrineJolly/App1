@@ -5,9 +5,11 @@
 export function CalculCAF()
 {
     const infos = document.getElementById('infosCAF');
-            infosHTML = '';
+            let infosHTML = '';
 
-            //Si la ligne de la cellule est remplie, alors il s'agit d'un jour d'accueil
+            /*Si il existe une correspondance dans la bdd pour ce jour (date), 
+            alors c'est un jour d'accueil */
+            //A modifier après que tout fonctionne
             let nbJAccueil = 6;
             infosHTML += `<h6 class="contrat-text"> Nombre de jours d'accueil : ${nbJAccueil}</h6>`;
 
@@ -20,6 +22,7 @@ export function CalculCAF()
             infosHTML += `<h6 class="contrat-text"> Indemnité d'entretien : ${entretien} €</h6>`;
 
             //Calcul indemnité de repas
+            //Si l'enfant est arrivé avant 12h et reparti après 13h, alors il a mangé
             let repas = 0;
             infosHTML += `<h6 class="contrat-text"> Indemnité de repas : ${repas} €</h6>`;
 

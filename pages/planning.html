@@ -108,6 +108,8 @@
         const row = document.createElement('tr'); // Créer une nouvelle ligne de tableau
         row.classList.add('row'); // Ajouter la class "row"
 
+        dateDuJour = `${i}/02/2024`;
+
         // Ajouter les cellules à la ligne
         row.innerHTML = `
             <td class="col"><div class="form-floating mb-1">${i}</div></td>
@@ -115,8 +117,9 @@
             <td class="col"><input type="text" class="form-control hDepart" oninput="calculateGarde(this)" onclick="enableInput(this)"></td>
             <td class="col"><div class="form-floating mb-1 gardeResult"></div></td>
         `;
-
-        dateDuJour = `${i}/02/2024`;
+        
+        // Ajouter l'attribut data-date à la ligne avec la valeur de dateDuJour
+        row.dataset.date = dateDuJour;
 
         // Ajouter la ligne au tableau
         table.appendChild(row);
@@ -128,33 +131,50 @@
         element.focus();
     }
 
+    // Stockage des données 
+    const heuresParJour = [];
+
     // Calcul du temps de garde
     function calculateGarde(element) {
-        const row = element.closest('tr');
-        const dayNumber = row.querySelector('.col:first-child').textContent;
-        const heureArrivee = row.querySelector('.hArriv').value;
-        const heureDepart = row.querySelector('.hDepart').value;
-        const gardeResult = row.querySelector('.gardeResult');
+    const row = element.closest('tr');
+    const chiffreJour = row.querySelector('.col:first-child').textContent;
+    const heureArrivee = row.querySelector('.hArriv').value;
+    const heureDepart = row.querySelector('.hDepart').value;
+    const gardeResult = row.querySelector('.gardeResult');
 
-        // Vérifier si les deux champs sont remplis
-        if (heureArrivee !== "" && heureDepart !== "") {
-            // Conversion en nombre pour effectuer le calcul
-            const heureArriveeNb = parseFloat(heureArrivee);
-            const heureDepartNb = parseFloat(heureDepart);
+    // Vérifier si les deux champs sont remplis
+    if (heureArrivee !== "" && heureDepart !== "") {
+        // Conversion en nombre pour effectuer le calcul
+        const heureArriveeNb = parseFloat(heureArrivee);
+        const heureDepartNb = parseFloat(heureDepart);
 
-            // Calcul du temps de garde
-            const nbHeuresJour = heureDepartNb - heureArriveeNb;
-
-            // Mise à jour de l'affichage du résultat
-            gardeResult.innerHTML = `<h6 class="contrat-text">${nbHeuresJour}</h6>`;
-
-            // Ajouter le résultat à l'objet des résultats
-            results[dayNumber] = nbHeuresJour;
-
-            // Mettre à jour le total
-            updateTotal();
+        // Vérifier si les données pour ce jour sont déjà présentes dans le tableau
+        const entreeExistante = heuresParJour.findIndex(entry => entry.chiffreJour === chiffreJour);
+        if (entreeExistante !== -1) {
+            // Mettre à jour les données existantes
+            heuresParJour[entreeExistante] = {
+                element: row,
+                chiffreJour,
+                heureArriveeNb,
+                heureDepartNb
+            };
+        } else {
+            // Ajouter les valeurs de la journée au tableau de stockage
+            heuresParJour.push({
+                element: row,
+                chiffreJour,
+                heureArriveeNb,
+                heureDepartNb
+            });
         }
+
+        // Mettre à jour le total
+        updateTotal();
+
+        // Afficher les lignes ajoutées dans la console
+        console.log(heuresParJour);
     }
+}
 
     function updateTotal() {
         let total = 0;
@@ -173,36 +193,24 @@
         evt.preventDefault();
 
         try {
-            let date = dateDuJour;
-            let nbHeures = totalHeures;
-
-            // Vous devez déclarer heureArriveeNb et heureDepartNb ici car ils ne sont pas accessibles en dehors de la fonction calculateGarde
-            let heureArriveeNb, heureDepartNb;
-
-            // Pour obtenir les valeurs de heureArriveeNb et heureDepartNb, vous devez les extraire de results
-            for (let day in results) {
-                if (results.hasOwnProperty(day)) {
-                    // Par exemple, si vous avez besoin des valeurs du premier jour, vous pouvez les extraire comme ceci :
-                    if (day === '1') {
-                        heureArriveeNb = parseFloat(table.querySelector(`tr:nth-child(1) .hArriv`).value);
-                        heureDepartNb = parseFloat(table.querySelector(`tr:nth-child(1) .hDepart`).value);
-                    }
-                }
-            }
-
-            if(idEnfant > 0) {
-                const idGarde = window.bridge.putGarde({
-                    date: date,
-                    nbHeures: nbHeures,
+           
+            for (let jour of heuresParJour) {
+                // Récupération de la valeur de dateDuJour depuis l'attribut data-date
+                const dateDuJour = jour.element.dataset.date;
+                const idGarde = await window.bridge.putGarde({
+                    date: dateDuJour,
+                    nbHeures: jour.heureDepartNb - jour.heureArriveeNb,
                     idEnfant: idEnfant,
-                    hArriv: heureArriveeNb,
-                    hDepart: heureDepartNb
+                    hArriv: jour.heureArriveeNb,
+                    hDepart: jour.heureDepartNb
                 });
+                console.log(`Garde enregistrée avec l'ID : ${idGarde}`);
             }
         } catch (error) {
             console.error(error);
         }
     });
+
 </script>
 
         </div>

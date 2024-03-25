@@ -11,3 +11,12 @@ export const putGarde = (gardeData) =>
     }
     return -1;
 }
+
+//Retourne la garde liée à l'id de l'enfant
+export const getGardeByIdEnfant = (idEnfant) =>
+{
+    const sql = "SELECT * from Garde WHERE idEnfant = ?";
+    let statement = db.prepare(sql);
+    let res = statement.get(idEnfant);
+    return res;
+}

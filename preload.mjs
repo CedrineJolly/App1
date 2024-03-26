@@ -1,7 +1,7 @@
 import { contextBridge } from 'electron';
 import { getContrats, createContrat, getTheContrat, deleteContrat, updateEtatContrat } from './models/contratsmanager.js';
 import { createEnfant, getEnfant, getInfoEnfant, getEnfantByIdContrat } from './models/enfantmanager.js';
-import { putGarde, getGardeByIdEnfant } from './models/gardemanager.js';
+import { putGarde, getGardeByIdEnfant, getGardeByIdEnfantAndDate } from './models/gardemanager.js';
 
 /* The preload script runs before. It has access to web APIs
    as well as Electron's renderer process modules and some polyfilled Node.js functions.
@@ -31,6 +31,7 @@ contextBridge.exposeInMainWorld("bridge", {
     getEnfantByIdContrat: getEnfantByIdContrat,
     getInfoEnfant: getInfoEnfant,
     putGarde: putGarde,
-    getGardeByIdEnfant: getGardeByIdEnfant
+    getGardeByIdEnfant: getGardeByIdEnfant,
+    getGardeByIdEnfantAndDate: getGardeByIdEnfantAndDate
 
 })

@@ -20,3 +20,12 @@ export const getGardeByIdEnfant = (idEnfant) =>
     let res = statement.get(idEnfant);
     return res;
 }
+
+//Retourne la garde liée à l'id de l'enfant
+export const getGardeByIdEnfantAndDate = (idEnfant, date) =>
+{
+    const sql = "SELECT * from Garde WHERE idEnfant = ? AND date = ?";
+    let statement = db.prepare(sql);
+    let res = statement.get(idEnfant, date);
+    return res;
+}

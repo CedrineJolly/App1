@@ -121,26 +121,20 @@
             </div>
 
             <script> 
-            // Récupérer la référence du tableau
+            // Récupération de la référence du tableau
             const table = document.querySelector('.table');
             let dateDuJour = "";
 
-            // Créer un objet pour stocker les résultats
+            // Création d'un objet pour stocker les résultats
             const results = {};
 
-            // Créer un tableau mensuel 
+            // Création d'un tableau mensuel 
 
-            //Affichage du nombre de lignes en fonction du nombre de jours dans le mois (28,29,30,31)
+            // Affichage du nombre de lignes en fonction du nombre de jours dans le mois (28,29,30,31)
             let year = 2024;
             let month = 3;
             const nbJourMois = (year, month) => new Date(year, month, 0).getDate();
             let joursTot = nbJourMois(year, month);
-
-            // Récupérer les paramètres d'URL
-            const urlParams3 = new URLSearchParams(window.location.search);
-            // Récupérer la valeur de l'idEnfant depuis les paramètres d'URL
-            let idEnfant3 = urlParams3.get('idEnfant');
-            const gardeExistante = window.bridge.getGardeByIdEnfant(idEnfant3);
 
             for (let i = 1; i <= joursTot; i++) {
                 const row = document.createElement('tr'); // Créer une nouvelle ligne de tableau
@@ -148,7 +142,13 @@
 
                 dateDuJour = `${i}/${month}/${year}`;
 
-                if (gardeExistante && dateDuJour===gardeExistante.Date) {
+                // Récupération des paramètres d'URL
+                const urlParams3 = new URLSearchParams(window.location.search);
+                // Récupération de la valeur de l'idEnfant depuis les paramètres d'URL
+                let idEnfant3 = urlParams3.get('idEnfant');
+                const gardeExistante = window.bridge.getGardeByIdEnfantAndDate(idEnfant3, dateDuJour);
+
+                if (gardeExistante) {
                     row.innerHTML = `
                         <td class="col"><div class="form-floating mb-1">${gardeExistante.Date}</div></td>
                         <td class="col"><div class="form-floating mb-1">${gardeExistante.HArriv}</div></td>
@@ -158,7 +158,7 @@
                 }
 
                 else {
-                    // Ajouter les cellules à la ligne
+                    // Ajout des cellules à la ligne i du tableau 
                     row.innerHTML = `
                         <td class="col"><div class="form-floating mb-1">${i}</div></td>
                         <td class="col"><input type="text" class="form-control hArriv" oninput="calculateGarde(this)" onclick="enableInput(this)"></td>
@@ -167,14 +167,14 @@
                     `;
                 }
 
-                // Ajouter l'attribut data-date à la ligne avec la valeur de dateDuJour
+                // Ajout de l'attribut data-date à la ligne avec la valeur de dateDuJour
                 row.dataset.date = dateDuJour;
 
-                // Ajouter la ligne au tableau
+                // Ajout de la ligne au tableau
                 table.appendChild(row);
             }
 
-            //Activation de l'édition des champs
+            // Activation de l'édition des champs
             function enableInput(element) {
                 element.removeAttribute("readonly");
                 element.focus();

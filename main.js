@@ -1,7 +1,6 @@
 // Modules to control application life and create native browser window
 import { app, BrowserWindow } from 'electron';
 import { join } from 'node:path';
-import { getContrats } from './models/contratsmanager.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
 

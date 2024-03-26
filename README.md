@@ -40,9 +40,26 @@ Pour visualiser les données, utiliser un outil comme `DBeaver`.
 
 # Packager le projet
 
-TODO Il faudra voir comment packager le projet pour pouvoir le lancer sans avoir à lancer une commande npm run start et éventuellement si c'est possible sans avoir à installer nodejs.
+*Objectif : obtenir un icône exécutable directement sur le desktop.*
+```
+npm install electron-packager --save-dev
+```
+Si nécessaire, lancer la commande suivante :
+```
+npm audit fix (si il y a des vulnerability)
+```
+Puis lancer cette commande :
+```
+npx electron-packager .
+```
 
-Objectif : obtenir un icône exécutable directement sur le desktop.
+Un dossier “app1-win32-x64” (si le packaging a été fait sur Windows), a été créé à l'endroit où vous étiez dans votre terminal.
+Ce dossier contient un exécutable app1.exe.
+Aller dans ce dossier puis dans “resources”.
+Copier-coller le fichier database.db et l’ajouter à la racine du dossier “app1-win32-x64”.
+
+Vous pouvez désormais ouvrir l'application avec l'exécutable.
+
 
 # Structure des sources du projet
 

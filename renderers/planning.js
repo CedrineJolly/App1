@@ -16,6 +16,26 @@ window.AfficheNom = (idEnfant) => {
   }
 };
 
+/*Affichage Mois et Année Actuelle
+window.AfficheDate = () => {
+
+  const listeData = document.getElementById('LeMoisActuel');
+
+  let ladate = new Date();
+  let month = ladate.getMonth()+1;
+  let year = ladate.getFullYear();
+  console.log(`Mois : ${month}, Année : ${year}`);
+
+  // Liste des mois de l'année
+  const moisListe = [
+    "Janvier", "Février", "Mars", "Avril", "Mai", "Juin","Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
+
+  // Conversion du mois en lettre
+  let moisEnLettres = moisListe[month - 1];
+
+  const moisEtAnnee = `Planning ${moisEnLettres} ${year}`;
+  listeData.textContent = moisEtAnnee;
+};*/
 
 //Archivage du profil enfant
 window.ArchiveEnfant = async (idEnfant) => {

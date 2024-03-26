@@ -44,19 +44,19 @@ Pour visualiser les données, utiliser un outil comme `DBeaver`.
 ```
 npm install electron-packager --save-dev
 ```
-Si nécessaire, lancer la commande suivante :
+Si nécessaire, lancer la commande suivante (si il y a des vulnerability)
 ```
-npm audit fix (si il y a des vulnerability)
+npm audit fix 
 ```
 Puis lancer cette commande :
 ```
 npx electron-packager .
 ```
 
-Un dossier “app1-win32-x64” (si le packaging a été fait sur Windows), a été créé à l'endroit où vous étiez dans votre terminal.
-Ce dossier contient un exécutable app1.exe.
-Aller dans ce dossier puis dans “resources”.
-Copier-coller le fichier database.db et l’ajouter à la racine du dossier “app1-win32-x64”.
+Un dossier `app1-win32-x64 `(si le packaging a été fait sur Windows), a été créé à l'endroit où vous étiez dans votre terminal.  
+Ce dossier contient un exécutable `app1.exe`.  
+Aller dans ce dossier puis dans `resources`.  
+Copier-coller le fichier database.db et l’ajouter à la racine du dossier `app1-win32-x64`.
 
 Vous pouvez désormais ouvrir l'application avec l'exécutable.
 

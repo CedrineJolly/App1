@@ -128,7 +128,7 @@
             // Créer un objet pour stocker les résultats
             const results = {};
 
-            // Créer 31 lignes au tableau
+            // Créer un tableau mensuel 
 
             //Affichage du nombre de lignes en fonction du nombre de jours dans le mois (28,29,30,31)
             let year = 2024;
@@ -136,19 +136,19 @@
             const nbJourMois = (year, month) => new Date(year, month, 0).getDate();
             let joursTot = nbJourMois(year, month);
 
+            // Récupérer les paramètres d'URL
+            const urlParams3 = new URLSearchParams(window.location.search);
+            // Récupérer la valeur de l'idEnfant depuis les paramètres d'URL
+            let idEnfant3 = urlParams3.get('idEnfant');
+            const gardeExistante = window.bridge.getGardeByIdEnfant(idEnfant3);
+
             for (let i = 1; i <= joursTot; i++) {
                 const row = document.createElement('tr'); // Créer une nouvelle ligne de tableau
                 row.classList.add('row'); // Ajouter la class "row"
 
                 dateDuJour = `${i}/${month}/${year}`;
 
-                // Récupérer les paramètres d'URL
-                const urlParams3 = new URLSearchParams(window.location.search);
-                // Récupérer la valeur de l'idEnfant depuis les paramètres d'URL
-                let idEnfant3 = urlParams3.get('idEnfant');
-                const gardeExistante = window.bridge.getGardeByIdEnfant(idEnfant3);
-
-                if (gardeExistante) {
+                if (gardeExistante && dateDuJour===gardeExistante.Date) {
                     row.innerHTML = `
                         <td class="col"><div class="form-floating mb-1">${gardeExistante.Date}</div></td>
                         <td class="col"><div class="form-floating mb-1">${gardeExistante.HArriv}</div></td>
@@ -168,10 +168,10 @@
                 }
 
                 // Ajouter l'attribut data-date à la ligne avec la valeur de dateDuJour
-                    row.dataset.date = dateDuJour;
+                row.dataset.date = dateDuJour;
 
-                    // Ajouter la ligne au tableau
-                    table.appendChild(row);
+                // Ajouter la ligne au tableau
+                table.appendChild(row);
             }
 
             //Activation de l'édition des champs
@@ -216,6 +216,15 @@
                         heureDepartNb
                     });
                 }
+
+                // Calcul du temps de garde
+                const nbHeuresJour = heureDepartNb - heureArriveeNb;
+
+                // Mise à jour de l'affichage du résultat
+                gardeResult.innerHTML = `<h6 class="contrat-text">${nbHeuresJour}</h6>`;
+
+                // Ajouter le résultat à l'objet des résultats
+                results[chiffreJour] = nbHeuresJour;
 
                 // Mettre à jour le total
                 updateTotal();

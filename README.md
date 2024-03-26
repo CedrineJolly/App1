@@ -55,8 +55,8 @@ npx electron-packager .
 
 Un dossier `app1-win32-x64 `(si le packaging a été fait sur Windows), a été créé à l'endroit où vous étiez dans votre terminal.  
 Ce dossier contient un exécutable `app1.exe`.  
-Aller dans ce dossier puis dans `resources`.  
-Copier-coller le fichier database.db et l’ajouter à la racine du dossier `app1-win32-x64`.
+Aller dans `resources`.  
+Copier le fichier `database.db` et le coller à la racine du dossier `app1-win32-x64`.
 
 Vous pouvez désormais ouvrir l'application avec l'exécutable.
 

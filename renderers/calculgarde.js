@@ -1,6 +1,6 @@
 /*
  * Calcule le temps de garde par jour avec les données précédentes
-*/
+
 
 export function GestionTable()
 {
@@ -81,3 +81,4 @@ export function GestionTable()
 }
 
 GestionTable()
+*/

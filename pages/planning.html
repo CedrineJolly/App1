@@ -110,19 +110,36 @@
 
         dateDuJour = `${i}/02/2024`;
 
-        // Ajouter les cellules à la ligne
-        row.innerHTML = `
-            <td class="col"><div class="form-floating mb-1">${i}</div></td>
-            <td class="col"><input type="text" class="form-control hArriv" oninput="calculateGarde(this)" onclick="enableInput(this)"></td>
-            <td class="col"><input type="text" class="form-control hDepart" oninput="calculateGarde(this)" onclick="enableInput(this)"></td>
-            <td class="col"><div class="form-floating mb-1 gardeResult"></div></td>
-        `;
-        
-        // Ajouter l'attribut data-date à la ligne avec la valeur de dateDuJour
-        row.dataset.date = dateDuJour;
+        // Récupérer les paramètres d'URL
+        const urlParams3 = new URLSearchParams(window.location.search);
+        // Récupérer la valeur de l'idEnfant depuis les paramètres d'URL
+        let idEnfant3 = urlParams3.get('idEnfant');
+        const gardeExistante = window.bridge.getGardeByIdEnfant(idEnfant3);
 
-        // Ajouter la ligne au tableau
-        table.appendChild(row);
+        if (gardeExistante) {
+            row.innerHTML = `
+                <td class="col"><div class="form-floating mb-1">${gardeExistante.Date}</div></td>
+                <td class="col"><div class="form-floating mb-1">${gardeExistante.HArriv}</div></td>
+                <td class="col"><div class="form-floating mb-1">${gardeExistante.HDepart}</div></td>
+                <td class="col"><div class="form-floating mb-1">${gardeExistante.NbHeures}</div></td>
+            `;
+        }
+
+        else {
+            // Ajouter les cellules à la ligne
+            row.innerHTML = `
+                <td class="col"><div class="form-floating mb-1">${i}</div></td>
+                <td class="col"><input type="text" class="form-control hArriv" oninput="calculateGarde(this)" onclick="enableInput(this)"></td>
+                <td class="col"><input type="text" class="form-control hDepart" oninput="calculateGarde(this)" onclick="enableInput(this)"></td>
+                <td class="col"><div class="form-floating mb-1 gardeResult"></div></td>
+            `;
+        }
+
+        // Ajouter l'attribut data-date à la ligne avec la valeur de dateDuJour
+            row.dataset.date = dateDuJour;
+
+            // Ajouter la ligne au tableau
+            table.appendChild(row);
     }
 
     //Activation de l'édition des champs
@@ -131,7 +148,7 @@
         element.focus();
     }
 
-    // Stockage des données 
+    // Stockage des données pour mettre en bdd
     const heuresParJour = [];
 
     // Calcul du temps de garde

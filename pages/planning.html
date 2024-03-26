@@ -104,7 +104,14 @@
     const results = {};
 
     // Créer 31 lignes au tableau
-    for (let i = 1; i <= 31; i++) {
+
+    //Affichage du nombre de lignes en fonction du nombre de jours dans le mois (28,29,30,31)
+    let year = 2024;
+    let month = 2;
+    const nbJourMois = (year, month) => new Date(year, month, 0).getDate();
+    let joursTot = nbJourMois(year, month);
+
+    for (let i = 1; i <= joursTot; i++) {
         const row = document.createElement('tr'); // Créer une nouvelle ligne de tableau
         row.classList.add('row'); // Ajouter la class "row"
 

@@ -29,3 +29,11 @@ export const getGardeByIdEnfantAndDate = (idEnfant, date) =>
     let res = statement.get(idEnfant, date);
     return res;
 }
+
+//Retourne le nombre de gardes liées à l'id de l'enfant
+export const SommeGardesByIdEnfant = (idEnfant) => {
+    const sql = "SELECT COUNT(*) AS totalGardes FROM Garde WHERE idEnfant = ?";
+    let statement = db.prepare(sql);
+    let res = statement.get(idEnfant);
+    return res.totalGardes;
+}

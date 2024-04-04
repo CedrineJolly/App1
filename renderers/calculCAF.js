@@ -7,10 +7,14 @@ export function CalculCAF()
     const infos = document.getElementById('infosCAF');
             let infosHTML = '';
 
-            /*Si il existe une correspondance dans la bdd pour ce jour (date), 
-            alors c'est un jour d'accueil */
-            //A modifier après que tout fonctionne
-            let nbJAccueil = 6;
+            // Récupération des paramètres d'URL
+            const urlParams4 = new URLSearchParams(window.location.search);
+            // Récupération de la valeur de l'idEnfant depuis les paramètres d'URL
+            let idEnfant4 = urlParams4.get('idEnfant');
+
+            //Somme du nombre de lignes dans la bdd selon l'idEnfant
+            //A faire ensuite selon le mois
+            let nbJAccueil =  window.bridge.SommeGardesByIdEnfant(idEnfant4);
             infosHTML += `<h6 class="contrat-text"> Nombre de jours d'accueil : ${nbJAccueil}</h6>`;
 
             //Calcul indemnité d'entretien
@@ -27,6 +31,8 @@ export function CalculCAF()
             infosHTML += `<h6 class="contrat-text"> Indemnité de repas : ${repas} €</h6>`;
 
             //Calcul heures normales
+            //Utilisation du nb de semaines de garde et d'heures par semaine de garde depuis le contrat
+            
             let heuresNormales = 0;
             infosHTML += `<h6 class="contrat-text"> Nombre d'heures normales : ${heuresNormales} €</h6>`;
 

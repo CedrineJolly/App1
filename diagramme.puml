@@ -10,7 +10,8 @@ class Contrat
     + TpsVen : int
     + TarifHoraire : int
     + NbSemaines : int
-    + Archive : int
+    + AideCaf : int
+    + Etat : int
 }
 
 class Enfant
@@ -26,7 +27,6 @@ class Mois
 {
     + IdMois : int
     + Date : date
-
     + TotHMois : int
     + NbJAccueil : int
     + IndemEntretien : int
@@ -34,27 +34,24 @@ class Mois
     + NbJActivite : int
     + SalaireNetPaye : int
     + MontantNetPaye : int
+    + IdEnfant : int
 
 }
+
+Enfant "1" --|{ "1..*" Mois : IdEnfant
 
 class Garde
 {
     + IdGarde : int
     + Date : date 
     + NbHeures : int
+    + HArriv : int
+    + HDepart : int
     + IdEnfant : int
 }
 
 Enfant "1" --|{ "1..*" Garde : IdEnfant
 
-class JoinGardeMois
-{
-    + IdGarde : int
-    + IdMois : int
-}
-
-Garde -- JoinGardeMois
-Mois -- JoinGardeMois
 
 class Impot
 {
@@ -63,14 +60,7 @@ class Impot
     + IdEnfant : int
 }
 
-class JoinImpot
-{
-    + IdGarde : int
-    + IdMois : int
-    + IdImpot : int
-}
+Enfant "1" --|{ "1..*" Impot : IdEnfant
 
-Impot -- JoinImpot
-JoinGardeMois -- JoinImpot
 
 @enduml
